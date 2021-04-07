@@ -1,6 +1,6 @@
 package beans;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,4 +16,8 @@ public class Matiere {
 
 	@Column(name="nomMatiere")
 	private String nom;
+	
+	@ManyToOne
+	@JoinColumn(name="module_id",referencedColumnName="id")
+	private Module module;
 }

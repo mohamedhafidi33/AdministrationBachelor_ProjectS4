@@ -1,12 +1,14 @@
 package beans;
 
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -64,6 +66,17 @@ public class Etudiant {
 	
 	@Column (name="nationalite")
 	private String nationalite;
+	
+	@OneToOne
+	@JoinColumn(name="User_id",referencedColumnName="id")
+	private User user;
+	
+	@OneToMany(mappedBy="etudiant")
+	private List<Document> documents;
+	
+	@ManyToOne
+	@JoinColumn(name="filiere_id",referencedColumnName="id")
+	private Filiere filiere;
 
 	public Etudiant() {
 		super();

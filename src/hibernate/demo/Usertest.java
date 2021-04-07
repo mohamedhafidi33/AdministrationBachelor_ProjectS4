@@ -21,7 +21,7 @@ public class Usertest {
 		try {
 // create a student object
 			System.out.println("Creating new student object...");
-			User tempuser = new User("Paul", "Wall");
+			User tempuser = new User("hala", "omad");
 
 // start a transaction
 			session.beginTransaction();

@@ -4,14 +4,23 @@
 		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
+	<!-- hibernate configuration -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.password">Mhafidi2000:</property>
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bd_administration</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.hbm2ddl.auto">create</property>
-
+		<!-- Mapping Classes -->
+		<mapping class="beans.Filiere" />
+		<mapping class="beans.Matiere" />
+		<mapping class="beans.Module" />
 		<mapping class="beans.Salle" />
+		<mapping class="beans.Etudiant" />
 		<mapping class="beans.User" />
+		<mapping class="beans.Schedule" />
+		<mapping class="beans.Semestre" />
+		<mapping class="beans.AnneeUniversitaire" />
+		<mapping class="beans.Document" />
 	</session-factory>
 </hibernate-configuration>

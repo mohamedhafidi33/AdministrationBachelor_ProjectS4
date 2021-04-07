@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,4 +22,7 @@ public class AnneeUniversitaire {
 	
 	@Column(name="date_fin")
 	private Date date_fin;
+	
+	@OneToOne(mappedBy="anneeuniversitaire")
+	private Schedule schedule;
 }
