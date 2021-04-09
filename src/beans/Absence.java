@@ -22,7 +22,7 @@ public class Absence {
 	@Column(name="date")
 	private Date date;
 	
-	@Column(name="date")
+	@Column(name="presence")
 	private Boolean presence;
 	
 	@Column(name="creneau")

@@ -29,7 +29,6 @@ public class Usertest {
 // save the student object
 			System.out.println("Saving the student...");
 			session.save(tempuser);
-
 // commit transaction
 			session.getTransaction().commit();
 

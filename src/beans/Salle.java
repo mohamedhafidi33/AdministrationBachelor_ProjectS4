@@ -1,5 +1,7 @@
 package beans;
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -23,6 +25,10 @@ private String description;
 @Column(name="typesalle")
 @Enumerated(EnumType.STRING)
 private Typesalle typesalle;
+
+@ManyToMany(mappedBy="salles")
+private List<Professeur> profs;
+
 
 public Salle(int numero, boolean occupation, String description) {
 	this.numero = numero;

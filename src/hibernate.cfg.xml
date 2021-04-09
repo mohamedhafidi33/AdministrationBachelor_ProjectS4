@@ -11,12 +11,15 @@
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="show_sql">true</property>
 		<!-- Mapping Classes -->
 		<mapping class="beans.Filiere" />
+		<mapping class="beans.Semestre"/>
 		<mapping class="beans.Matiere" />
 		<mapping class="beans.Module" />
 		<mapping class="beans.Salle" />
 		<mapping class="beans.Etudiant" />
+		<mapping class="beans.Professeur"/>
 		<mapping class="beans.User" />
 		<mapping class="beans.Schedule" />
 		<mapping class="beans.Semestre" />

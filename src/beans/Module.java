@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -25,4 +26,8 @@ public class Module {
 	
 	@OneToMany(mappedBy="module")
 	private List<Matiere> matieres;
+	
+	@ManyToOne
+	@JoinColumn(name="semestre_id",referencedColumnName="id")
+	private Semestre semestre;
 }

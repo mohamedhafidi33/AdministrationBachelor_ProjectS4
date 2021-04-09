@@ -18,4 +18,7 @@ private String nom;
 @OneToMany(mappedBy="filiere")
 private List<Etudiant> etudiants;
 
+@OneToMany(mappedBy="filiere")
+private List<Semestre> semestres;
+
 }

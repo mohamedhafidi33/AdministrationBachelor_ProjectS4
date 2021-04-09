@@ -1,7 +1,8 @@
 package beans;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,4 +26,7 @@ public class AnneeUniversitaire {
 	
 	@OneToOne(mappedBy="anneeuniversitaire")
 	private Schedule schedule;
+	
+	@ManyToMany(mappedBy="annees")
+	private List<Etudiant> etudiants;
 }

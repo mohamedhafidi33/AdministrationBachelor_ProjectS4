@@ -1,5 +1,7 @@
 package beans;
 
+import java.util.List;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,4 +22,7 @@ public class Matiere {
 	@ManyToOne
 	@JoinColumn(name="module_id",referencedColumnName="id")
 	private Module module;
+	
+	@ManyToMany(mappedBy="matieres")
+	private List<Professeur> profs;
 }
