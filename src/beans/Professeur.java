@@ -35,13 +35,8 @@ public class Professeur {
 	@Column (name="nationalite")
 	private String nationalite;
 	
-	@ManyToMany(cascade=CascadeType.ALL)
-	@JoinTable(
-			name="Reservations",
-			joinColumns=@JoinColumn(name="Professeur_id",referencedColumnName="id"),
-			inverseJoinColumns=@JoinColumn(name="Salle_id",referencedColumnName="id")
-					)
-	private List<Salle> salles;
+	@OneToMany(mappedBy="professeur")
+	private List<Reservation> reservations;
 
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(

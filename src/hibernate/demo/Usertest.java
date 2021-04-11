@@ -15,7 +15,6 @@ public class Usertest {
 		// TODO Auto-generated method stub
 		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 		SessionFactory factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-		System.out.print("hello");
 		Session session = factory.openSession();
 		
 		try {

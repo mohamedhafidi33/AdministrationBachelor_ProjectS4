@@ -73,6 +73,9 @@ public class Etudiant {
 
 	@OneToMany(mappedBy = "etudiant")
 	private List<Document> documents;
+	
+	@OneToMany(mappedBy = "etudiant")
+	private List<ME_Absence> me_absences;
 
 	@ManyToOne
 	@JoinColumn(name = "filiere_id", referencedColumnName = "id")
@@ -110,6 +113,15 @@ public class Etudiant {
 		this.province = province;
 		this.ville = ville;
 		this.nationalite = nationalite;
+	}
+	
+	
+	
+	public Etudiant(String nom, String prenom, User user) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.user = user;
 	}
 
 	public int getId() {

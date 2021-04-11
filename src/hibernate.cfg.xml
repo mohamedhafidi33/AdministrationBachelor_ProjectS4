@@ -25,5 +25,8 @@
 		<mapping class="beans.Semestre" />
 		<mapping class="beans.AnneeUniversitaire" />
 		<mapping class="beans.Document" />
+		<mapping class="beans.Reservation"/>
+		<mapping class="beans.ME_Absence"/>
+		<mapping class="beans.Absence"/>
 	</session-factory>
 </hibernate-configuration>
