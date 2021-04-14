@@ -44,11 +44,12 @@ public class IUserImplDAO implements IUserDAO{
 		Query query=session.createQuery("select password from User where username=:username");
 		query.setParameter("username", username);
 		List<User> users=query.list();
+		User user=users.get(0);
 		session.getTransaction().commit();
 		session.close();
-		System.out.print(users.get(0).getPassword());
+		System.out.print(user.getPassword());
 		System.out.print("dazt2");
-		if(users.get(0).getPassword().equals(password)) {
+		if(user.getPassword().equals(password)) {
 			return true;
 		}
 		//System.out.print(users.size());
