@@ -35,6 +35,10 @@ public class Professeur {
 	@Column (name="nationalite")
 	private String nationalite;
 	
+	@OneToOne
+	@JoinColumn(name = "User_id", referencedColumnName = "id")
+	private User user;
+	
 	@OneToMany(mappedBy="professeur")
 	private List<Reservation> reservations;
 

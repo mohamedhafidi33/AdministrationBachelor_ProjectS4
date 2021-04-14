@@ -24,6 +24,9 @@ public class User {
 	@OneToOne(mappedBy="user")
 	private Etudiant etudiant;
 	
+	@OneToOne(mappedBy="user")
+	private Professeur professeur;
+	
 	public User() {
 		super();
 	}
