@@ -13,6 +13,8 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<property name="show_sql">true</property>
 		<!-- Mapping Classes -->
+		<mapping class="dao.UserDAO" />
+		<mapping class="dao.IUserDAO" />
 		<mapping class="beans.Filiere" />
 		<mapping class="beans.Semestre"/>
 		<mapping class="beans.Matiere" />

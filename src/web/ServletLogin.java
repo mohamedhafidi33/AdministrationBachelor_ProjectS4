@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.User;
+import dao.IUserDAO;
 import dao.IUserImplDAO;
+import dao.UserDAO;
 
 /**
  * Servlet implementation class ServletLogin
@@ -48,24 +50,39 @@ public class ServletLogin extends HttpServlet {
 		doGet(request, response);
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(3600);
+		System.out.print(request.getServletPath());
 		if (request.getServletPath().equals("/login")) {
-			IUserImplDAO u = new IUserImplDAO();
-			String username = request.getParameter("username");
-			String password = request.getParameter("password");
-			User user = u.getUser(username, password);
-			if (user != null) {
-				if (user.getRole().equals("admin")) {
-					request.getRequestDispatcher("/HomeAdmin.jsp").forward(request, response);
-				}
-				if (user.getRole().equals("etudiant")) {
-					request.getRequestDispatcher("/HomeEtudiant.jsp").forward(request, response);
-				}
-				if (user.getRole().equals("professeur")) {
-					request.getRequestDispatcher("/HomeProfesseur.jsp").forward(request, response);
-				}
-			} else {
-				request.getRequestDispatcher("/page_404.jsp").forward(request, response);
-			}
+			
+			UserDAO u = new UserDAO();
+			u.getTest();
+	    
+		
+/*---------------------------------------Checking if username and password matched---------------------------------*/
+			
+//			if (u.login(username, password)) {
+//				
+//				User user = u.getUser(username, password);
+//				System.out.print("username"+user.getUsername());
+//				
+///*---------------------------------------Admin, Professeur or Etudiant ????---------------------------------*/
+//				
+//				if (user.getRole().equals("admin")) {
+//					System.out.print("you are an admin Maaaan!!!");
+//					request.getRequestDispatcher("/HomeAdmin.jsp").forward(request, response);
+//					
+//				} else if (user.getRole().equals("etudiant")) {
+//					request.getRequestDispatcher("/HomeEtudiant.jsp").forward(request, response);
+//					
+//				} else if (user.getRole().equals("professeur")) {
+//					request.getRequestDispatcher("/HomeProfesseur.jsp").forward(request, response);
+//				}
+//				
+///*---------------------------------------username and password don't match ==> Error---------------------------------*/
+//				
+//			} else {
+//				request.getRequestDispatcher("/page_404.jsp").forward(request, response);
+//				System.out.print("failed!!!");
+//			}
 		}
 	}
 }

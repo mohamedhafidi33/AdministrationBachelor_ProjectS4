@@ -36,14 +36,15 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>6.0.0.Alpha7</version>
+			<version>5.2.2.Final</version>
+			
 			<type>pom</type>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>6.0.0.Alpha7</version>
+			<version>5.2.2.Final</version>
 			<type>pom</type>
 		</dependency>
 

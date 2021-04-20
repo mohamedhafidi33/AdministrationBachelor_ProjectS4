@@ -8,11 +8,11 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
+
 import beans.User;
 
-public class IUserImplDAO implements IUserDAO {
-
-	@Override
+public class UserDAO {
+	
 	public User getUser(String username, String password) {
 		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 		SessionFactory factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
@@ -33,7 +33,7 @@ public class IUserImplDAO implements IUserDAO {
 		}
 	}
 
-	@Override
+
 	public boolean login(String username, String password) {
 		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 		SessionFactory factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
@@ -58,8 +58,9 @@ public class IUserImplDAO implements IUserDAO {
 		}
 		return false;
 	}
-	@Override
+
 	public void getTest() {
 		System.out.println("testMethod");
 	}
+
 }
