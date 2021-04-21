@@ -1,12 +1,15 @@
 package hibernate.demo;
 
 import org.hibernate.Session;
+
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import beans.Role;
 import beans.User;
 
 public class Usertest {
@@ -20,14 +23,15 @@ public class Usertest {
 		
 		try {
 // create a student object
-			System.out.println("Creating new student object...");
-			User tempuser = new User("Paul", "Wall");
+			System.out.println("Creating new user...");
+			User tempuser = new User("Asmae ", "mahjoubiAA ",Role.student);
+			
 
 // start a transaction
 			session.beginTransaction();
 
 // save the student object
-			System.out.println("Saving the student...");
+			System.out.println("Saving the user...");
 			session.save(tempuser);
 
 // commit transaction
@@ -38,5 +42,4 @@ public class Usertest {
 			factory.close();
 		}
 	}
-
 }

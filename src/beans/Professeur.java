@@ -1,11 +1,8 @@
 package beans;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
+
+import javax.persistence.*;
 @Entity
 @Table(name="Professeur")
 public class Professeur {
@@ -37,7 +34,23 @@ public class Professeur {
 	
 	@Column (name="nationalite")
 	private String nationalite;
+	
+	@OneToOne
+	@JoinColumn(name = "User_id", referencedColumnName = "id")
+	private User user;
+	
+	@OneToMany(mappedBy="professeur")
+	private List<Reservation> reservations;
 
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(
+	name="Enseignements",
+	joinColumns=@JoinColumn(name="Professeur_id",referencedColumnName="id"),
+	inverseJoinColumns=@JoinColumn(name="Matiere_id",referencedColumnName="id")
+			)
+	private List<Matiere> matieres;
+	
+	
 	public Professeur() {
 		super();
 	}
@@ -54,6 +67,11 @@ public class Professeur {
 		this.province = province;
 		this.ville = ville;
 		this.nationalite = nationalite;
+	}
+	public Professeur(String nom, String prenom) {
+		super();
+		this.nom=nom;
+		this.prenom=prenom;
 	}
 
 	public int getId() {

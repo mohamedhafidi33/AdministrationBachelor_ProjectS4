@@ -1,75 +1,98 @@
 package beans;
 
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Etudiant")
+@Table(name = "Etudiant")
 public class Etudiant {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
-	@Column (name="nom")
+
+	@Column(name = "nom")
 	private String nom;
-	
-	@Column (name="prenom")
+
+	@Column(name = "prenom")
 	private String prenom;
-	
-	@Column (name="sexe")
-	private Gender sexe ;
-	
-	@Column (name="cin")
+
+	@Column(name = "sexe")
+	private Gender sexe;
+
+	@Column(name = "cin")
 	private String cin;
-	
-	@Column (name="cne")
+
+	@Column(name = "cne")
 	private String cne;
-	
-	@Column (name="dateInscription")
+
+	@Column(name = "dateInscription")
 	private Date dateInscription;
-	
-	@Column (name="dateNaissance")
+
+	@Column(name = "dateNaissance")
 	private Date dateNaissance;
-	
-	@Column (name="email")
+
+	@Column(name = "email")
 	private String email;
-	
-	@Column (name="etablissement")
+
+	@Column(name = "etablissement")
 	private String etablissement;
-	
-	@Column (name="lieuNaissance")
+
+	@Column(name = "lieuNaissance")
 	private String lieuNaissance;
-	
-	@Column (name="lieuBac")
+
+	@Column(name = "lieuBac")
 	private String lieuBac;
-	
-	@Column (name="lycee")
+
+	@Column(name = "lycee")
 	private String lycee;
-	
-	@Column (name="mention")
+
+	@Column(name = "mention")
 	private String mention;
-	
-	@Column (name="province")
+
+	@Column(name = "province")
 	private String province;
-	
-	@Column (name="ville")
+
+	@Column(name = "ville")
 	private String ville;
-	
-	@Column (name="nationalite")
+
+	@Column(name = "nationalite")
 	private String nationalite;
+
+	@OneToOne
+	@JoinColumn(name = "User_id", referencedColumnName = "id")
+	private User user;
+
+	@OneToMany(mappedBy = "etudiant")
+	private List<Document> documents;
+	
+	//@OneToMany(mappedBy = "etudiant")
+	//private List<Ternaire_Absence> Ternaire_Absence;
+
+	@ManyToOne
+	@JoinColumn(name = "filiere_id", referencedColumnName = "id")
+	private Filiere filiere;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "Inscription_Adm", 
+			joinColumns = @JoinColumn(name = "Etudiant_id", referencedColumnName = "id"), 
+			inverseJoinColumns = @JoinColumn(name = "Annnee_id", referencedColumnName = "id"))
+	private List<AnneeUniversitaire> annees;
 
 	public Etudiant() {
 		super();
 	}
 
-	public Etudiant(int id, String nom, String prenom, Gender sexe, String cin, String cne, Date dateInscription,
+	public Etudiant(String nom, String prenom, Gender sexe, String cin, String cne, Date dateInscription,
 			Date dateNaissance, String email, String etablissement, String lieuNaissance, String lieuBac, String lycee,
 			String mention, String province, String ville, String nationalite) {
 		super();
@@ -91,6 +114,16 @@ public class Etudiant {
 		this.ville = ville;
 		this.nationalite = nationalite;
 	}
+	
+	
+	
+	public Etudiant(String nom, String prenom, String cin) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.cin=cin;
+	}
+	
 
 	public int getId() {
 		return id;
@@ -227,5 +260,6 @@ public class Etudiant {
 	public void setNationalite(String nationalite) {
 		this.nationalite = nationalite;
 	}
-	
 }
+
+

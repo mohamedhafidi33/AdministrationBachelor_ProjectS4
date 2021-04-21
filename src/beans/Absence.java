@@ -1,6 +1,7 @@
 package beans;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,12 +24,13 @@ public class Absence {
 	@Column(name="date")
 	private Date date;
 	
-	@Column(name="date")
+	@Column(name="presence")
 	private Boolean presence;
 	
 	@Column(name="creneau")
 	@Enumerated(EnumType.STRING)
 	private Creneau creneau;
 	
-	
+	//@OneToMany(mappedBy = "absence")
+	//private List<Ternaire_Absence> ternaire_absences;
 }

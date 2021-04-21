@@ -1,11 +1,13 @@
 package beans;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,4 +23,10 @@ public class AnneeUniversitaire {
 	
 	@Column(name="date_fin")
 	private Date date_fin;
+	
+	@OneToOne(mappedBy="anneeuniversitaire")
+	private Schedule schedule;
+	
+	@ManyToMany(mappedBy="annees")
+	private List<Etudiant> etudiants;
 }

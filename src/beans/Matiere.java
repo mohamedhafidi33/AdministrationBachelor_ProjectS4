@@ -1,11 +1,8 @@
 package beans;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
+
+import javax.persistence.*;
 @Entity
 @Table(name="Matiere")
 public class Matiere {
@@ -16,4 +13,14 @@ public class Matiere {
 
 	@Column(name="nomMatiere")
 	private String nom;
+	
+	@ManyToOne
+	@JoinColumn(name="module_id",referencedColumnName="id")
+	private Module module;
+	
+	@ManyToMany(mappedBy="matieres")
+	private List<Professeur> profs;
+	
+	//@OneToMany(mappedBy = "matiere")
+	//private List<Ternaire_Absence> Ternaire_Absence;
 }

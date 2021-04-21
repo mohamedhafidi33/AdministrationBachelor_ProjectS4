@@ -3,7 +3,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name="USER")
+@Table(name="USERS")
 public class User {
 	
 	@Id
@@ -21,6 +21,12 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
+	@OneToOne(mappedBy="user")
+	private Etudiant etudiant;
+	
+	@OneToOne(mappedBy="user")
+	private Professeur professeur;
+	
 	public User() {
 		super();
 	}
@@ -29,6 +35,9 @@ public class User {
 		super();
 		this.username = username;
 		this.password = password;
+	}
+	public User(String username) {
+		this.username=username;
 	}
 
 	public User(String username, String password, Role role) {

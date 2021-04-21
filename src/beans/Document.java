@@ -1,5 +1,7 @@
 package beans;
 
+
+
 import javax.persistence.*;
 
 @Entity
@@ -13,4 +15,8 @@ public class Document {
 	@Column(name="type")
 	@Enumerated(EnumType.STRING)
 	private Doctype type;
+	
+	@ManyToOne
+	@JoinColumn(name="Etudiant_id",referencedColumnName="id")
+	private Etudiant etudiant;
 }

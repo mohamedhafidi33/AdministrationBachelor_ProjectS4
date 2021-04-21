@@ -1,5 +1,7 @@
 package beans;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,5 +14,11 @@ private int id;
 
 @Column(name="nomFiliere")
 private String nom;
+
+@OneToMany(mappedBy="filiere")
+private List<Etudiant> etudiants;
+
+@OneToMany(mappedBy="filiere")
+private List<Semestre> semestres;
 
 }
