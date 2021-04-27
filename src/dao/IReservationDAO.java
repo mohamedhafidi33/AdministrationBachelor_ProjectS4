@@ -1,11 +1,12 @@
 package dao;
 
 import java.util.Date;
+import java.util.List;
 
 import beans.*;
 
 public interface IReservationDAO {
-	void ajouter_reservation(Salle s,Professeur p,Creneau c,Date d);
-	void supprimer_reservation(Reservation r);
-	Reservation chercher_reservation(Reservation R);
+	void ajouterReservation(Reservation reservation);
+	void supprimerReservation(Reservation reservation);
+	List<Reservation> listreseRvations();
 }

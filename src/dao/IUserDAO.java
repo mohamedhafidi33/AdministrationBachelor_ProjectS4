@@ -1,9 +1,13 @@
 package dao;
 
-import beans.*;
+import beans.User;
 
 public interface IUserDAO {
-	public User getUser(String username,String password);
-	public boolean login(String username,String password);
-	public void getTest() ;
+
+	User getUser(String username, String password);
+
+	boolean login(String username, String password);
+
+	void getTest();
+
 }

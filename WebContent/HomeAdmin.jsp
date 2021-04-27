@@ -30,13 +30,15 @@
     <link href="build/css/custom.min.css" rel="stylesheet">
   </head>
 
+   </head>
+
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Administration Bachelor </span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -44,11 +46,11 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="images/user.png" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <h2> Admin </h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -58,45 +60,49 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>General</h3>
+                <h3>Taches administratives </h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-home"></i> Gestion des absences  <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.html">Dashboard</a></li>
-                      <li><a href="index2.html">Dashboard2</a></li>
-                      <li><a href="index3.html">Dashboard3</a></li>
+                      <li><a href="index.html"> BGI </a> </li>
+                      <li><a href="index2.html">BGB </a></li>
+                      <li><a href="index3.html"> BCA </a ></li>
+
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> Gestion des étudiants  <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">General Form</a></li>
-                      <li><a href="form_advanced.html">Advanced Components</a></li>
-                      <li><a href="form_validation.html">Form Validation</a></li>
-                      <li><a href="form_wizards.html">Form Wizard</a></li>
-                      <li><a href="form_upload.html">Form Upload</a></li>
-                      <li><a href="form_buttons.html">Form Buttons</a></li>
-                    </ul>
+                      <li><a href="form.html">Ajouter étudiant </a></li>
+                      <li><a href="projects.html">Liste des étudiants </a></li>
+                      <!--<li><a href="form_validation.html">Supprimer étudiant </a></li>-->
+                      <li><a href="form_validation.html">Inscription administrative pour les étudiants </a></li>
+                      <!--<li><a href="form_upload.html">  </a></li>-->
+                      <!--<li><a href="form_buttons.html">Form Buttons</a></li>
+-->                    </ul>
                   </li>
-                  <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i> Gestion des salles <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="general_elements.html">General Elements</a></li>
-                      <li><a href="media_gallery.html">Media Gallery</a></li>
-                      <li><a href="typography.html">Typography</a></li>
+                      <li><a href="general_elements.html">Ajouter salles</a></li>
+                      <li><a href="media_gallery.html">Liste des salles</a></li>
+                      <!--<li><a href="media_gallery.html">Supprimer salles</a></li>-->
+                      <!--<li><a href="typography.html">Typography</a></li>
                       <li><a href="icons.html">Icons</a></li>
                       <li><a href="glyphicons.html">Glyphicons</a></li>
                       <li><a href="widgets.html">Widgets</a></li>
                       <li><a href="invoice.html">Invoice</a></li>
                       <li><a href="inbox.html">Inbox</a></li>
-                      <li><a href="calendar.html">Calendar</a></li>
+                      <li><a href="calendar.html">Calendar</a></li>-->
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-table"></i> Gestion des modules <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="tables.html">Tables</a></li>
-                      <li><a href="tables_dynamic.html">Table Dynamic</a></li>
+                      <li><a href="projects2.html">BGI</a></li>
+                      <li><a href="form_validation.html">BGB</a></li>
+                      <li><a href="form_validation.html">BCA</a></li>
+                      <!--<li><a href="tables_dynamic.html">Table Dynamic</a></li>-->
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
+                  <!--<li><a><i class="fa fa-bar-chart-o"></i> Gestion des professeurs <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="chartjs.html">Chart JS</a></li>
                       <li><a href="chartjs2.html">Chart JS2</a></li>
@@ -104,17 +110,41 @@
                       <li><a href="echarts.html">ECharts</a></li>
                       <li><a href="other_charts.html">Other Charts</a></li>
                     </ul>
+                  </li>-->
+                   <li><a><i class="fa fa-table"></i> Gestion des profs <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="projects2.html">Ajouter professeur </a></li>
+                      <li><a href="form_validation.html">Liste des professeurs </a></li>
+                      
+                      <!--<li><a href="tables_dynamic.html">Table Dynamic</a></li>-->
+                    </ul>
                   </li>
-                  <li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
+                   <li><a><i class="fa fa-table"></i> Gestion des emplois <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="projects2.html">BGI</a></li>
+                      <li><a href="form_validation.html">BGB</a></li>
+                      <li><a href="form_validation.html">BCA</a></li>
+                      <!--<li><a href="tables_dynamic.html">Table Dynamic</a></li>-->
+                    </ul>
+                  </li>
+                   <li><a><i class="fa fa-table"></i> Gestion des filières <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="projects2.html">Créer filière</a></li>
+                      <li><a href="form_validation.html">Liste des filières </a></li>
+                      
+                      <!--<li><a href="tables_dynamic.html">Table Dynamic</a></li>-->
+                    </ul>
+                  </li>
+                  <!--<li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
                       <li><a href="fixed_footer.html">Fixed Footer</a></li>
                     </ul>
-                  </li>
+                  </li>-->
                 </ul>
               </div>
-              <div class="menu_section">
-                <h3>Live On</h3>
+              <!--<div class="menu_section">-->
+                <!--<h3>Live On</h3>
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -124,18 +154,18 @@
                       <li><a href="contacts.html">Contacts</a></li>
                       <li><a href="profile.html">Profile</a></li>
                     </ul>
-                  </li>
-                  <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                  </li>-->
+                  <!--<li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="page_403.html">403 Error</a></li>
                       <li><a href="page_404.html">404 Error</a></li>
                       <li><a href="page_500.html">500 Error</a></li>
                       <li><a href="plain_page.html">Plain Page</a></li>
                       <li><a href="login.html">Login Page</a></li>
-                      <li><a href="pricing_tables.html">Pricing Tables</a></li>
+                      <li><a href="pricing_tables.html">Pricing Tables</a> </li>
                     </ul>
-                  </li>
-                  <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
+                  </li>-->
+                  <!--<li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="#level1_1">Level One</a>
                         <li><a>Level One<span class="fa fa-chevron-down"></span></a>
@@ -151,8 +181,8 @@
                         <li><a href="#level1_2">Level One</a>
                         </li>
                     </ul>
-                  </li>                  
-                  <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
+                  </li>-->                  
+                  <a href="javascript:void(0)"> </a>
                 </ul>
               </div>
 
@@ -188,7 +218,7 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
+                    <img src="images/user.png" alt="">Admin
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item"  href="javascript:;"> Profile</a>
@@ -277,34 +307,34 @@
           <div class="row" style="display: inline-block;" >
           <div class="tile_count">
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+              <span class="count_top"><i class="fa fa-user"></i> Total students </span>
+              <div class="count"> 300 </div>
+              <span class="count_bottom"><i class="green">4% </i> From last Year</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span>
-              <div class="count">123.50</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+              <span class="count_top"><i class="fa fa-user"></i> BGI students </span>
+              <div class="count">31</div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Year</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Males</span>
-              <div class="count green">2,500</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+              <span class="count_top"><i class="fa fa-user"></i> BGB students</span>
+              <div class="count green">21</div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>2% </i> From last Year</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Females</span>
-              <div class="count">4,567</div>
-              <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+              <span class="count_top"><i class="fa fa-user"></i> BCA Students </span>
+              <div class="count">26</div>
+              <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>2% </i> From last Year</span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Collections</span>
-              <div class="count">2,315</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+              <span class="count_top"><i class="fa fa-user"></i> Total teachers </span>
+              <div class="count">30</div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i> 1% </i> From last 2 years </span>
             </div>
             <div class="col-md-2 col-sm-4  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
-              <div class="count">7,325</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+              <span class="count_top"><i class="fa fa-user"></i> Total branches </span>
+              <div class="count"> 3 </div>
+              <span class="count_bottom"><i class="green"> Stable </span>
             </div>
           </div>
         </div>

@@ -30,10 +30,13 @@ public class Salle implements Serializable {
 	@OneToMany(mappedBy = "salle")
 	private List<Reservation> reservations;
 
-	public Salle(int numero, boolean occupation, String description) {
+	
+	public Salle(int numero, boolean occupation, String description, Typesalle typesalle) {
+		super();
 		this.numero = numero;
 		this.occupation = occupation;
 		this.description = description;
+		this.typesalle = typesalle;
 	}
 
 	public Salle() {

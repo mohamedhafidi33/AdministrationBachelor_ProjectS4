@@ -1,15 +1,9 @@
 package beans;
 
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
-
+import java.sql.*;
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "Etudiant")
@@ -26,6 +20,7 @@ public class Etudiant {
 	private String prenom;
 
 	@Column(name = "sexe")
+	@Enumerated(EnumType.STRING)
 	private Gender sexe;
 
 	@Column(name = "cin")
@@ -142,6 +137,23 @@ public class Etudiant {
 
 	public String getPrenom() {
 		return prenom;
+	}
+	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Filiere getFiliere() {
+		return filiere;
+	}
+
+	public void setFiliere(Filiere filiere) {
+		this.filiere = filiere;
 	}
 
 	public void setPrenom(String prenom) {
