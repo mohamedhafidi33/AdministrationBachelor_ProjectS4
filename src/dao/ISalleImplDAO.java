@@ -46,7 +46,7 @@ public class ISalleImplDAO implements ISalleDAO{
 
 	@Override
 	public List<Salle> listsalles() {
-ArrayList<Salle> salles = new ArrayList<Salle>();
+		ArrayList<Salle> salles = new ArrayList<Salle>();
 		
 		Connection connexion = DAOFACTORY.getConnection();
 		try {
@@ -88,5 +88,30 @@ ArrayList<Salle> salles = new ArrayList<Salle>();
 			System.out.println("error");
 		}
 		return salle;
+	}
+
+	@Override
+	public List<Salle> disponibleSalles() {
+		ArrayList<Salle> salles = new ArrayList<Salle>();
+		
+		Connection connexion = DAOFACTORY.getConnection();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("select * from salles ;");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Salle salle=new Salle();
+				salle.setDescription(rs.getString("description"));
+				salle.setNumero(rs.getInt("numero"));
+				salle.setOccupation(rs.getBoolean("occupation"));
+				//salle.setTypesalle(Typesalle.valueOf(rs.getString("typesalle")));
+				if(salle.isOccupation()==false) {
+				salles.add(salle);}
+			}
+			ps.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error");
+		}
+		return salles;
 	}
 }

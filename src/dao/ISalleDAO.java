@@ -9,4 +9,5 @@ public interface ISalleDAO {
 	public void supprimerSalle(Salle salle);
 	public List<Salle> listsalles();
 	public Salle getSalleById(int id);
+	public List<Salle> disponibleSalles();
 }

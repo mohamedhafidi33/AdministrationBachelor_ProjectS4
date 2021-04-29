@@ -25,7 +25,7 @@
       <!-- Custom Theme Style -->
       <link href="build/css/custom.min.css" rel="stylesheet">
     </head>
-<% if(session.getAttribute("admin")==null){ 
+<% if(session.getAttribute("professeur")==null){ 
         response.sendRedirect("login.jsp");} 
    	 %>
     <body class="nav-md">
@@ -328,7 +328,7 @@
                             <!--<th>Team Members</th>-->                   
                             <th>Description </th>
                             <th style="width: 20%"> Type de salle </th>
-                            <th>Consulter/Modifier/Supprimer </th>
+                            <th>Reserver </th>
                           </tr>
                          
                         </thead>
@@ -359,7 +359,7 @@
                             <td>
                               <!--<button class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Consult </button>-->
 
-                  <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg" ><i class="fa fa-folder"></i>Consulter </button>
+                  <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg" >Réserver </button>
 
                     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
                       <div class="modal-dialog modal-lg">
@@ -388,27 +388,33 @@
                       <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action" style="width:100%">
                         <thead>
                           <tbody>
+                          <form method="post" action="reserver" > 
                           <tr>
-                            
-                 
+ 
                            <th>Id : </th>
-                            <td> ${salle.id } </td>
+                            <td> ${salle.id } 
+                             <input type="hidden"  name="id" value=${salle.id }  />
+                            </td>
                             
                           </tr>
                         </thead>
-
-
+                        
                         <tbody>
+                         
                           <tr>
                            
                 <th>Numero :  </th>
-                            <td> ${salle.numero } </td>
+                            <td> <a> ${salle.numero } 
+       							<input type="hidden"  name="numero" value=${salle.numero } />
+                              </a> </td>
                           </tr>
 
                           <tr>
                            
                 <th>Description : </th>
-                            <td> ${salle.description } </td>
+                            <td> <a> ${salle.description } 
+                            <input type="hidden"  name="description" value=${salle.description } />
+                            </a> </td>
 
                             
                             
@@ -416,12 +422,21 @@
                           <tr>
                 <th>Type de salle :  </th>
                  
-                            <td> ${salle.typesalle } </td>
+                            <td>  <a> ${salle.typesalle} 
+                              <input type="hidden"  name="typesalle" value=${salle.typesalle }  />
+                              </a> </td>
                             
                             
                           </tr>
-  
+                          
+                          <tr>   <th></th>              
+                           <td>
+                           <input type="submit" class="btn btn-info btn-xs" value="Réserver">  
+                            </td>
+                         </tr>
+                         
                         </tbody>
+                        </form>
                       </table>
                     </div>
                     </div>
@@ -433,11 +448,8 @@
                   </div>
                 </div>
               </div>    
-                              <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Modifier </a>
-                              <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Supprimer </a>
-
+                              
                             </td></c:forEach>
-                      
                                                    
                             
                   

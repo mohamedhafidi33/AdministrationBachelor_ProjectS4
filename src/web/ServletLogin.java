@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.Professeur;
 import beans.User;
 import dao.IEtudiantDAO;
 import dao.IEtudiantImplDAO;
@@ -55,9 +56,19 @@ public class ServletLogin extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
+		System.out.print(request.getServletPath());
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(3600);
-		System.out.print(request.getServletPath());
+
+		if (request.getServletPath().equals("/logout")) {
+			System.out.println(00);
+			session.removeAttribute("Employe");
+			session.invalidate();
+			System.out.println(99);
+			response.sendRedirect("Login.jsp");
+
+		}
+
 		if (request.getServletPath().equals("/login")) {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
@@ -75,7 +86,7 @@ public class ServletLogin extends HttpServlet {
 
 				if (user.getRole().name().equals("admin")) {
 					System.out.println("votre nom : " + iprof.getProf(user).getNom());
-					session.setAttribute(password, user);
+					session.setAttribute("admin", user);
 					System.out.print("you are an admin Maaaan!!!");
 					request.getRequestDispatcher("/HomeAdmin.jsp").forward(request, response);
 
@@ -85,7 +96,9 @@ public class ServletLogin extends HttpServlet {
 
 				} else if (user.getRole().name().equals("professeur")) {
 					session.setAttribute("professeur", iprof.getProf(user));
-					request.getRequestDispatcher("/HomeProfesseur.jsp").forward(request, response);
+					session.setAttribute("professeur_id", iprof.getProf(user).getId());
+					System.out.println(session.getAttribute("professeur_id"));
+					request.getRequestDispatcher("/reserverSalle").forward(request, response);
 				}
 
 				/*---------------------------------------username and password don't match ==> Error---------------------------------*/

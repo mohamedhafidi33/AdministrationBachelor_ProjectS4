@@ -82,8 +82,8 @@
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Gestion des salles <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="general_elements.html">Ajouter salles</a></li>
-                      <li><a href="media_gallery.html">Liste des salles</a></li>
+                      <li><a href="http://localhost:8000/AdministrationBachelor_ProjectS4/ajouterSalle">Ajouter salles</a></li>
+                      <li><a href="http://localhost:8000/AdministrationBachelor_ProjectS4/afficheSalles">Liste des salles</a></li>
                       <!--<li><a href="media_gallery.html">Supprimer salles</a></li>-->
                       <!--<li><a href="typography.html">Typography</a></li>
                       <li><a href="icons.html">Icons</a></li>
