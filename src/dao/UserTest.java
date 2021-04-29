@@ -19,10 +19,10 @@ public class UserTest {
 			ps.setString(2, password);
 			 ResultSet rs = ps.executeQuery();
 				if(rs.next()){
+					p.setId(Integer.parseInt(rs.getString("id")));
 					p.setUsername(rs.getString("username"));
 					p.setPassword(rs.getString("password"));
 					p.setRole(Role.valueOf(rs.getString("role")));
-					System.out.print(p.getRole());
 				}			
 			ps.close();
 			System.out.println("query executed");

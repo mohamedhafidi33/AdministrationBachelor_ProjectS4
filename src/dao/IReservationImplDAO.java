@@ -19,13 +19,15 @@ public class IReservationImplDAO implements IReservationDAO{
 		Connection connexion = DAOFACTORY.getConnection();
 		try {
 			PreparedStatement ps = connexion.prepareStatement(
-					" insert into reservation(creneau,date,Professeur_Id,Salle_Id)  values(?,?,?,?)");
+					" insert into reservation(crenau,date,Professeur_Id,Salle_Id)  values(?,?,?,?)");
 			ps.setString(1, reservation.getCrenau().toString());
 			ps.setDate(2, (Date) reservation.getDate());
 			ps.setInt(3, reservation.getProfesseur().getId());
 			ps.setInt(4, reservation.getSalle().getId());
 			ps.executeUpdate();
 			ps.close();
+			reservation.getSalle().setOccupation(true);
+			isalle.modifierSalle(reservation.getSalle());
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("error");

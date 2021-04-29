@@ -54,10 +54,11 @@ public class ISalleImplDAO implements ISalleDAO{
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Salle salle=new Salle();
+				salle.setId(Integer.parseInt(rs.getString("id")));
 				salle.setDescription(rs.getString("description"));
 				salle.setNumero(rs.getInt("numero"));
 				salle.setOccupation(rs.getBoolean("occupation"));
-				//salle.setTypesalle(Typesalle.valueOf(rs.getString("typesalle")));
+				salle.setTypesalle(Typesalle.valueOf(rs.getString("typesalle")));
 				salles.add(salle);
 			}
 			ps.close();
@@ -77,6 +78,7 @@ public class ISalleImplDAO implements ISalleDAO{
 			ps.setInt(1,id);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
+				salle.setId(Integer.parseInt(rs.getString("id")));
 				salle.setDescription(rs.getString("description"));
 				salle.setNumero(rs.getInt("numero"));
 				salle.setOccupation(rs.getBoolean("occupation"));
@@ -100,10 +102,11 @@ public class ISalleImplDAO implements ISalleDAO{
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Salle salle=new Salle();
+				salle.setId(Integer.parseInt(rs.getString("id")));
 				salle.setDescription(rs.getString("description"));
 				salle.setNumero(rs.getInt("numero"));
 				salle.setOccupation(rs.getBoolean("occupation"));
-				//salle.setTypesalle(Typesalle.valueOf(rs.getString("typesalle")));
+				salle.setTypesalle(Typesalle.valueOf(rs.getString("typesalle")));
 				if(salle.isOccupation()==false) {
 				salles.add(salle);}
 			}
@@ -113,5 +116,25 @@ public class ISalleImplDAO implements ISalleDAO{
 			System.out.println("error");
 		}
 		return salles;
+	}
+	@Override
+	public void modifierSalle(Salle salle) {
+		Connection connexion = DAOFACTORY.getConnection();
+		try {
+			PreparedStatement ps = connexion.prepareStatement("update salles set id=? , description=? , numero=? , occupation=?  , typesalle=? where id=? ;");
+
+			ps.setInt(1, salle.getId());
+			ps.setString(2, salle.getDescription());
+			ps.setInt(3, salle.getNumero());
+			ps.setBoolean(4, salle.isOccupation());
+			ps.setString(5, salle.getTypesalle().toString());
+			ps.setInt(6, salle.getId());
+			ps.executeUpdate();
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error");
+		}
+
 	}
 }

@@ -31,7 +31,9 @@
   </head>
 
    </head>
-
+<% if(session.getAttribute("admin")==null){ 
+        response.sendRedirect("login.jsp");} 
+   	 %>
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
@@ -227,7 +229,7 @@
                         <span>Settings</span>
                       </a>
                   <a class="dropdown-item"  href="javascript:;">Help</a>
-                    <a class="dropdown-item"  href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    <a class="dropdown-item" name="logout" href="http://localhost:8000/AdministrationBachelor_ProjectS4/login"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </div>
                 </li>
 

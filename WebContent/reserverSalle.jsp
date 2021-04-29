@@ -368,7 +368,7 @@
                           <div class="col-md-12 col-sm-12 ">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>Consultation de l'Ã©tudiant(e)</small></h2>
+                      <h2>Réservation de salle</small></h2>
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -392,9 +392,9 @@
                           <tr>
  
                            <th>Id : </th>
-                            <td> ${salle.id } 
+                            <td> <a>${salle.id } 
                              <input type="hidden"  name="id" value=${salle.id }  />
-                            </td>
+                          </a>  </td>
                             
                           </tr>
                         </thead>
@@ -429,7 +429,38 @@
                             
                           </tr>
                           
-                          <tr>   <th></th>              
+                          <tr>
+                           
+                <th>Creneau :  </th>
+                            <td> <a> <select class="form-control" name="creneau">
+													<option>C1</option>
+													<option>C2</option>
+													<option>C3</option>
+													<option>C4</option>
+												</select>
+                              </a> </td>
+                          </tr>
+
+                          <tr>
+                <th>Date de reservation:  </th>
+                 
+                            <td>  <a> 
+                           
+							<input id="birthday" name="date" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
+								<script>
+									function timeFunctionLong(input) {
+											setTimeout(function() {
+												input.type = 'text';
+												}, 60000);
+											}
+									</script>
+											
+                              </a> </td>
+                            
+                            
+                          </tr>
+                                                    
+                          <tr>           
                            <td>
                            <input type="submit" class="btn btn-info btn-xs" value="Réserver">  
                             </td>

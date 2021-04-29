@@ -10,4 +10,5 @@ public interface ISalleDAO {
 	public List<Salle> listsalles();
 	public Salle getSalleById(int id);
 	public List<Salle> disponibleSalles();
+	void modifierSalle(Salle salle);
 }

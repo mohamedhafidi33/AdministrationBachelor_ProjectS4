@@ -1,6 +1,8 @@
 package web;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,8 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.Creneau;
+import beans.Reservation;
 import beans.Salle;
 import beans.Typesalle;
+import dao.IProfesseurDAO;
+import dao.IProfesseurImplDAO;
+import dao.IReservationDAO;
+import dao.IReservationImplDAO;
 import dao.ISalleDAO;
 import dao.ISalleImplDAO;
 
@@ -23,6 +30,8 @@ import dao.ISalleImplDAO;
 public class ServletReservationSalle extends HttpServlet {
 	Salle salle = new Salle();
 	ISalleDAO isalle = new ISalleImplDAO();
+	IReservationDAO irsv=new IReservationImplDAO();
+	IProfesseurDAO iprof=new IProfesseurImplDAO();
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -81,9 +90,20 @@ public class ServletReservationSalle extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/afficheSalles.jsp").forward(request, response);
 		}
 		else if (request.getServletPath().equals("/reserver")) {
-			System.out.println("hahiya reserver");
-			System.out.println(request.getParameter("numero"));
-			session.getAttribute("professeur");
+			session.getAttribute("professeur_id");
+			
+			Reservation reservation=new Reservation();
+			reservation.setSalle(isalle.getSalleById(Integer.parseInt(request.getParameter("id"))));
+			reservation.setCrenau(Creneau.valueOf(request.getParameter("creneau")));
+			try {
+				reservation.setDate(new SimpleDateFormat("yyyy-MMM-dd").parse(request.getParameter("date")));
+			} catch (ParseException e) {
+				System.out.println("error de date *********");
+				e.printStackTrace();
+			}
+			reservation.setProfesseur(iprof.getProfById(Integer.parseInt(session.getAttribute("professeur_id").toString())));
+			irsv.ajouterReservation(reservation);
+			System.out.println("Done !!!!!!!!!!!!!!");
 		}
 	}
 }

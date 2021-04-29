@@ -80,7 +80,7 @@ public class ServletLogin extends HttpServlet {
 				User user = u.getUser(username, password);
 				System.out.println("username" + user.getUsername());
 				System.out.println("role: " + user.getRole());
-				System.out.println("role: " + user.getId());
+				System.out.println("idUser: " + user.getId());
 
 				/*---------------------------------------Admin, Professeur or Etudiant ????---------------------------------*/
 
@@ -97,7 +97,8 @@ public class ServletLogin extends HttpServlet {
 				} else if (user.getRole().name().equals("professeur")) {
 					session.setAttribute("professeur", iprof.getProf(user));
 					session.setAttribute("professeur_id", iprof.getProf(user).getId());
-					System.out.println(session.getAttribute("professeur_id"));
+					session.setAttribute("professeur_nom", iprof.getProf(user).getNom());
+					session.setAttribute("professeur_prenom", iprof.getProf(user).getPrenom());
 					request.getRequestDispatcher("/reserverSalle").forward(request, response);
 				}
 
