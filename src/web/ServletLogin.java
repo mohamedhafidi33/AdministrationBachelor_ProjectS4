@@ -21,7 +21,7 @@ import dao.UserTest;
 /**
  * Servlet implementation class ServletLogin
  */
-@WebServlet(urlPatterns = { "/ServletLogin", "/login" })
+@WebServlet(urlPatterns = { "/ServletLogin", "/login","/HomeAdmin","/logout" })
 public class ServletLogin extends HttpServlet {
 	UserTest u = new UserTest();
 	IProfesseurDAO iprof = new IProfesseurImplDAO();
@@ -65,8 +65,7 @@ public class ServletLogin extends HttpServlet {
 			session.removeAttribute("Employe");
 			session.invalidate();
 			System.out.println(99);
-			response.sendRedirect("Login.jsp");
-
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 
 		if (request.getServletPath().equals("/login")) {
@@ -92,14 +91,14 @@ public class ServletLogin extends HttpServlet {
 
 				} else if (user.getRole().name().equals("etudiant")) {
 					session.setAttribute("etudiant", ietud.getEtudiant(user));
-					request.getRequestDispatcher("/HomeEtudiant.jsp").forward(request, response);
+					request.getRequestDispatcher("/HomeEtudiant").forward(request, response);
 
 				} else if (user.getRole().name().equals("professeur")) {
 					session.setAttribute("professeur", iprof.getProf(user));
 					session.setAttribute("professeur_id", iprof.getProf(user).getId());
 					session.setAttribute("professeur_nom", iprof.getProf(user).getNom());
 					session.setAttribute("professeur_prenom", iprof.getProf(user).getPrenom());
-					request.getRequestDispatcher("/reserverSalle").forward(request, response);
+					request.getRequestDispatcher("/HomeProf.jsp").forward(request, response);
 				}
 
 				/*---------------------------------------username and password don't match ==> Error---------------------------------*/
@@ -108,6 +107,8 @@ public class ServletLogin extends HttpServlet {
 				System.out.print("failed!!!");
 				request.getRequestDispatcher("/page_404.jsp").forward(request, response);
 			}
-		} // else System.out.print("zefzef");
+		} else if (request.getServletPath().equals("/HomeAdmin")) {
+			request.getRequestDispatcher("/HomeAdmin").forward(request, response);
+		}
 	}
 }

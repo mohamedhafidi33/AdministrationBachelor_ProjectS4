@@ -35,7 +35,7 @@ public class ISalleImplDAO implements ISalleDAO{
 			Connection connexion = DAOFACTORY.getConnection();
 			try {
 				PreparedStatement ps=connexion.prepareStatement("delete from salles where id=? ; ");
-				ps.setInt(1, salle.getId()+1);
+				ps.setInt(1, salle.getId());
 				ps.executeUpdate();
 		        ps.close();
 		}catch (Exception e) {

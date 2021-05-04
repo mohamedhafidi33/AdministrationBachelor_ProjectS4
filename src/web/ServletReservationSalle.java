@@ -26,7 +26,7 @@ import dao.ISalleImplDAO;
 /**
  * Servlet implementation class ServletReservationSalle
  */
-@WebServlet(urlPatterns = { "/ajouterSalle", "/addSalle", "/afficheSalles", "/reserverSalle", "/reserver" })
+@WebServlet(urlPatterns = { "/ajouterSalle", "/addSalle", "/afficheSalles", "/reserverSalle", "/reserver","/deleteSalle" })
 public class ServletReservationSalle extends HttpServlet {
 	Salle salle = new Salle();
 	ISalleDAO isalle = new ISalleImplDAO();
@@ -104,6 +104,22 @@ public class ServletReservationSalle extends HttpServlet {
 			reservation.setProfesseur(iprof.getProfById(Integer.parseInt(session.getAttribute("professeur_id").toString())));
 			irsv.ajouterReservation(reservation);
 			System.out.println("Done !!!!!!!!!!!!!!");
+		}
+		else if (request.getServletPath().equals("/deleteSalle")) {
+			System.out.println("you are deleting");
+			int id=Integer.parseInt(request.getParameter("id"));
+			System.out.println("you are deleting"+id);
+			String description = request.getParameter("description");
+			int numero = Integer.parseInt(request.getParameter("numero"));
+			Typesalle typeSalle = Typesalle.valueOf(request.getParameter("typesalle"));
+			salle.setId(id);
+			salle.setDescription(description);
+			salle.setNumero(numero);
+			salle.setOccupation(false);
+			salle.setTypesalle(typeSalle);
+			irsv.supprimerParSalle(salle);
+			isalle.supprimerSalle(salle);
+			
 		}
 	}
 }

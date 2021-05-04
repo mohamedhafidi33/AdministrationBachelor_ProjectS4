@@ -50,6 +50,21 @@ public class IReservationImplDAO implements IReservationDAO{
 	}
 
 	@Override
+	public void supprimerParSalle(Salle salle) {
+		Connection connexion = DAOFACTORY.getConnection();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("delete from reservation where Salle_Id=? ; ");
+			ps.setInt(1, salle.getId());
+			ps.executeUpdate();
+	        ps.close();
+	}catch (Exception e) {
+		e.printStackTrace();
+		System.out.println("error");
+	}
+		
+	}
+	
+	@Override
 	public List<Reservation> listreseRvations() {
 		List<Reservation> reservations = new ArrayList<Reservation>();
 		Connection connexion = DAOFACTORY.getConnection();
