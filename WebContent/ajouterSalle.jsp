@@ -2,227 +2,156 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+<title>Administration Bachelor|</title>
 
-    <!-- Bootstrap -->
-    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+<!-- Bootstrap -->
+<link href="vendors/bootstrap/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Font Awesome -->
+<link href="vendors/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<!-- NProgress -->
+<link href="vendors/nprogress/nprogress.css" rel="stylesheet">
 
-    <!-- Custom Theme Style -->
-    <link href="build/css/custom.min.css" rel="stylesheet">
+<!-- Custom Theme Style -->
+<link href="build/css/custom.min.css" rel="stylesheet">
 </head>
 <% if(session.getAttribute("admin")==null){ 
         response.sendRedirect("login.jsp");} 
    	 %>
 <body class="nav-md">
-    <div class="container body">
-        
-             <%@include file="headerAdmin.jsp" %>
+	<div class="container body">
 
-            <!-- top navigation -->
-            <div class="top_nav">
-                <div class="nav_menu">
-                    <div class="nav toggle">
-                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                    </div>
-                    <nav class="nav navbar-nav">
-                        <ul class=" navbar-right">
-                            <li class="nav-item dropdown open" style="padding-left: 15px;">
-                                <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/img.jpg" alt="">John Doe
-                                </a>
-                                <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="javascript:;"> Profile</a>
-                                    <a class="dropdown-item" href="javascript:;">
-                                        <span class="badge bg-red pull-right">50%</span>
-                                        <span>Settings</span>
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:;">Help</a>
-                                    <a class="dropdown-item" href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
-                                </div>
-                            </li>
+		<%@include file="headerAdmin.jsp"%>
 
-                            <li role="presentation" class="nav-item dropdown open">
-                                <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa fa-envelope-o"></i>
-                                    <span class="badge bg-green">6</span>
-                                </a>
-                                <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item">
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <div class="text-center">
-                                            <a class="dropdown-item">
-                                                <strong>See All Alerts</strong>
-                                                <i class="fa fa-angle-right"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <!-- /top navigation -->
+		<!-- top navigation -->
 
-            <!-- page content -->
-            <div class="right_col" role="main">
-                <div class="">
-                    <div class="page-title">
-                        <div class="title_left">
-                            <h3>Gestion des salles</h3>
-                        </div>
+		<!-- /top navigation -->
 
-                        <div class="title_right">
-                            <div class="col-md-5 col-sm-5 form-group pull-right top_search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search for...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">Go!</button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
+		<!-- page content -->
+		<div class="right_col" role="main">
+			<div class="">
+				<div class="page-title">
+					<div class="title_left">
+						<h3>Gestion des salles</h3>
+					</div>
 
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                            <div class="x_panel">
-                                <div class="x_title">
-                                    <h2>Ajout d'une salle<small></small></h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#">Settings 1</a>
-                                                <a class="dropdown-item" href="#">Settings 2</a>
-                                            </div>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                    <form class="" action="addSalle" method="post" >
-                                        <p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a>
-                                        </p>
-                                        <span class="section">Données de salle</span>
-        
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Numero <span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="number" class='number' name="numero" data-validate-minmax="10,100" required='required'></div>
-                                        </div>
-                                     
-                                       <div class="form-group row">
-											<label class="control-label col-md-3 col-sm-3 ">Type de salle</label>
-											<div class="col-md-9 col-sm-9 ">
-												<select class="form-control" name="typesalle">
-													<option>Cours</option>
-													<option>TP</option>
-													<option>LA</option>
-												</select>
+					<div class="title_right">
+						<div class="col-md-5 col-sm-5 form-group pull-right top_search">
+							<div class="input-group">
+								<input type="text" class="form-control"
+									placeholder="Search for..."> <span
+									class="input-group-btn">
+									<button class="btn btn-default" type="button">Go!</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+
+				<div class="row">
+					<div class="col-md-12 col-sm-12">
+						<div class="x_panel">
+							<div class="x_title">
+								<h2>
+									Ajout d'une salle<small></small>
+								</h2>
+								<ul class="nav navbar-right panel_toolbox">
+									<li><a class="collapse-link"><i
+											class="fa fa-chevron-up"></i></a></li>
+									<li class="dropdown"><a href="#" class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-expanded="false"><i
+											class="fa fa-wrench"></i></a>
+										<div class="dropdown-menu"
+											aria-labelledby="dropdownMenuButton">
+											<a class="dropdown-item" href="#">Settings 1</a> <a
+												class="dropdown-item" href="#">Settings 2</a>
+										</div></li>
+									<li><a class="close-link"><i class="fa fa-close"></i></a>
+									</li>
+								</ul>
+								<div class="clearfix"></div>
+							</div>
+							<div class="x_content">
+								<form class="" action="addSalle" method="post">
+									<p>
+										For alternative validation library
+										<code>parsleyJS</code>
+										check out in the <a href="form.html">form page</a>
+									</p>
+									<span class="section">Données de salle</span>
+
+									<div class="field item form-group">
+										<label class="col-form-label col-md-3 col-sm-3  label-align">Numero
+											<span class="required">*</span>
+										</label>
+										<div class="col-md-6 col-sm-6">
+											<input class="form-control" type="number" class='number'
+												name="numero" data-validate-minmax="10,100"
+												required='required'>
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label class="control-label col-md-3 col-sm-3 ">Type de salle</label>
+										<div class="col-md-9 col-sm-9 ">
+											<select class="form-control" name="typesalle">
+												<option>Cours</option>
+												<option>TP</option>
+												<option>LA</option>
+											</select>
+										</div>
+									</div>
+									<div class="field item form-group">
+										<label class="col-form-label col-md-3 col-sm-3  label-align">Description<span
+											class="required">*</span></label>
+										<div class="col-md-6 col-sm-6">
+											<textarea required="required" name="description"></textarea>
+										</div>
+									</div>
+									<div class="ln_solid">
+										<div class="form-group">
+											<div class="col-md-6 offset-md-3">
+												<input type="submit" class="btn btn-primary" value="Aouter">
+												<button type='reset' class="btn btn-success">Reset</button>
 											</div>
 										</div>
-                                        <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Description<span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <textarea required="required" name="description"></textarea></div>
-                                        </div>
-                                        <div class="ln_solid">
-                                            <div class="form-group">
-                                                <div class="col-md-6 offset-md-3">
-                                                    <input type="submit" class="btn btn-primary" value="Aouter">
-                                                    <button type='reset' class="btn btn-success">Reset</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /page content -->
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /page content -->
 
-            <!-- footer content -->
-            <footer>
-                <div class="pull-right">
-                    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-                </div>
-                <div class="clearfix"></div>
-            </footer>
-            <!-- /footer content -->
-        </div>
-    </div>
+		<!-- footer content -->
+		<footer>
+			<div class="pull-right">
+				Gentelella - Bootstrap Admin Template by <a
+					href="https://colorlib.com">Colorlib</a>
+			</div>
+			<div class="clearfix"></div>
+		</footer>
+		<!-- /footer content -->
+	</div>
+	</div>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="vendors/validator/multifield.js"></script>
-    <script src="vendors/validator/validator.js"></script>
-    
-    <!-- Javascript functions	-->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="vendors/validator/multifield.js"></script>
+	<script src="vendors/validator/validator.js"></script>
+
+	<!-- Javascript functions	-->
 	<script>
 		function hideshow(){
 			var password = document.getElementById("password1");
@@ -243,7 +172,7 @@
 		}
 	</script>
 
-    <script>
+	<script>
         // initialize a validator instance from the "FormValidator" constructor.
         // A "<form>" element is optionally passed as an argument, but is not a must
         var validator = new FormValidator({
@@ -269,19 +198,19 @@
 
     </script>
 
-    <!-- jQuery -->
-    <script src="vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- FastClick -->
-    <script src="vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="vendors/nprogress/nprogress.js"></script>
-    <!-- validator -->
-    <!-- <script src="../vendors/validator/validator.js"></script> -->
+	<!-- jQuery -->
+	<script src="vendors/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- FastClick -->
+	<script src="vendors/fastclick/lib/fastclick.js"></script>
+	<!-- NProgress -->
+	<script src="vendors/nprogress/nprogress.js"></script>
+	<!-- validator -->
+	<!-- <script src="../vendors/validator/validator.js"></script> -->
 
-    <!-- Custom Theme Scripts -->
-    <script src="build/js/custom.min.js"></script>
+	<!-- Custom Theme Scripts -->
+	<script src="build/js/custom.min.js"></script>
 
 </body>
 

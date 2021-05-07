@@ -6,6 +6,38 @@ import javax.persistence.*;
 @Entity
 @Table(name="Matiere")
 public class Matiere {
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public Module getModule() {
+		return module;
+	}
+
+	public void setModule(Module module) {
+		this.module = module;
+	}
+
+	public List<Professeur> getProfs() {
+		return profs;
+	}
+
+	public void setProfs(List<Professeur> profs) {
+		this.profs = profs;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")

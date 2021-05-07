@@ -8,6 +8,7 @@ public interface IUserDAO {
 
 	boolean login(String username, String password);
 
-	void getTest();
+	
+	void ajouterUser(User user);
 
 }

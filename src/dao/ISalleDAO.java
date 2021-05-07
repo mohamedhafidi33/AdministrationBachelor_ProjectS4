@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import beans.Salle;
@@ -11,4 +12,6 @@ public interface ISalleDAO {
 	public Salle getSalleById(int id);
 	public List<Salle> disponibleSalles();
 	void modifierSalle(Salle salle);
+	
+	List<Salle> listSallebyDate(Date date);
 }

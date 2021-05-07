@@ -1,6 +1,7 @@
 package web;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -26,8 +27,9 @@ import dao.ISalleImplDAO;
 /**
  * Servlet implementation class ServletReservationSalle
  */
-@WebServlet(urlPatterns = { "/ajouterSalle", "/addSalle", "/afficheSalles", "/reserverSalle", "/reserver","/deleteSalle" })
+@WebServlet(urlPatterns = { "/ajouterSalle", "/addSalle", "/afficheSalles", "/reserverSalle", "/reserver","/deleteSalle","/sendDate","/modifierSalle" })
 public class ServletReservationSalle extends HttpServlet {
+	String datum="";
 	Salle salle = new Salle();
 	ISalleDAO isalle = new ISalleImplDAO();
 	IReservationDAO irsv=new IReservationImplDAO();
@@ -77,34 +79,65 @@ public class ServletReservationSalle extends HttpServlet {
 			salle.setTypesalle(typeSalle);
 			isalle.ajouterSalle(salle);
 			System.out.println("salle bien ajoutée");
+			this.getServletContext().getRequestDispatcher("/afficheSalles").forward(request, response);
 		} 
+		
+		
+		
+		
 		else if (request.getServletPath().equals("/reserverSalle")) {
 			request.setAttribute("salles", isalle.disponibleSalles());
 			this.getServletContext().getRequestDispatcher("/reserverSalle.jsp").forward(request, response);
 		}
-		else if (request.getServletPath().equals("/supprimerSalle")) {
-
+		
+		
+		
+		
+		else if (request.getServletPath().equals("/modifierSalle")) {
+			Salle salle=new Salle();
+			salle.setId(Integer.parseInt(request.getParameter("id")));
+			salle.setNumero(Integer.parseInt(request.getParameter("numero")));
+			salle.setDescription(request.getParameter("description"));
+			salle.setTypesalle(Typesalle.valueOf(request.getParameter("typesalle")));
+			isalle.modifierSalle(salle);
+			this.getServletContext().getRequestDispatcher("/afficheSalles").forward(request, response);
 		}
+		
+		
+		
 		else if (request.getServletPath().equals("/afficheSalles")) {
 			request.setAttribute("salles", isalle.listsalles());
 			this.getServletContext().getRequestDispatcher("/afficheSalles.jsp").forward(request, response);
 		}
+		
+		
+		
+		
+		else if(request.getServletPath().equals("/sendDate")) {
+			if(isalle.listSallebyDate(Date.valueOf(request.getParameter("date"))).isEmpty()){this.getServletContext().getRequestDispatcher("/reserverSalle.jsp").forward(request, response);}
+				else {
+			datum= request.getParameter("date");
+			request.setAttribute("salles",isalle.listSallebyDate(Date.valueOf(request.getParameter("date"))));
+			this.getServletContext().getRequestDispatcher("/reserverSalle.jsp").forward(request, response);}
+		}
+		
+		
+		
+		
 		else if (request.getServletPath().equals("/reserver")) {
 			session.getAttribute("professeur_id");
-			
 			Reservation reservation=new Reservation();
 			reservation.setSalle(isalle.getSalleById(Integer.parseInt(request.getParameter("id"))));
 			reservation.setCrenau(Creneau.valueOf(request.getParameter("creneau")));
-			try {
-				reservation.setDate(new SimpleDateFormat("yyyy-MMM-dd").parse(request.getParameter("date")));
-			} catch (ParseException e) {
-				System.out.println("error de date *********");
-				e.printStackTrace();
-			}
+			System.out.println("here is the date"+datum);
+			reservation.setDate(Date.valueOf(datum));			
 			reservation.setProfesseur(iprof.getProfById(Integer.parseInt(session.getAttribute("professeur_id").toString())));
 			irsv.ajouterReservation(reservation);
 			System.out.println("Done !!!!!!!!!!!!!!");
 		}
+		
+		
+		
 		else if (request.getServletPath().equals("/deleteSalle")) {
 			System.out.println("you are deleting");
 			int id=Integer.parseInt(request.getParameter("id"));

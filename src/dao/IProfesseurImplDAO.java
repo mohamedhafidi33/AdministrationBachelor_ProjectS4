@@ -7,12 +7,13 @@ import java.sql.ResultSet;
 import beans.Etudiant;
 import beans.Gender;
 import beans.Professeur;
+import beans.Role;
 import beans.Salle;
 import beans.Typesalle;
 import beans.User;
 
 public class IProfesseurImplDAO implements IProfesseurDAO{
-
+	IUserDAO iuser=new UserTest();
 	@Override
 	public Professeur getProf(User user) {
 		// TODO Auto-generated method stub
@@ -69,5 +70,35 @@ public class IProfesseurImplDAO implements IProfesseurDAO{
 		}
 		return p;
 	}
+	
+	@Override
+	public void ajouterProf(Professeur prof) {
+		Connection connexion = DAOFACTORY.getConnection();
+		User user=new User();
+		try {
+			PreparedStatement ps = connexion.prepareStatement(
+					" insert into professeur(nom,prenom,cin,email,nationalite,ville,province,sexe,User_id) values(?,?,?,?,?,?,?,?,?) ");
+			user.setUsername(prof.getPrenom().substring(0,1)+prof.getNom());
+			user.setPassword(prof.getCin());
+			user.setRole(Role.professeur);
+			iuser.ajouterUser(user);
+			ps.setString(1, prof.getNom());
+			ps.setString(2, prof.getPrenom());
+			ps.setString(3, prof.getCin());
+			ps.setString(4, prof.getEmail());
+			ps.setString(5, prof.getNationalite());
+			ps.setString(6, prof.getVille());
+			ps.setString(7, prof.getProvince());
+			ps.setString(8, prof.getSexe().toString());
+			System.out.println("sexe f DAO : "+prof.getSexe());
+			ps.setInt(9, iuser.getUser(user.getUsername(), user.getPassword()).getId());
+			ps.executeUpdate();
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error");
+		}		
+	}
+
 	
 	}

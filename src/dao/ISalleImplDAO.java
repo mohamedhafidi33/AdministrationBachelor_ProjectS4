@@ -1,11 +1,13 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import beans.Creneau;
 import beans.Salle;
 import beans.Typesalle;
 
@@ -98,7 +100,7 @@ public class ISalleImplDAO implements ISalleDAO{
 		
 		Connection connexion = DAOFACTORY.getConnection();
 		try {
-			PreparedStatement ps=connexion.prepareStatement("select * from salles ;");
+			PreparedStatement ps=connexion.prepareStatement("select * from salles s ,reservation r where r.Salle_Id!=s.id ;");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Salle salle=new Salle();
@@ -107,8 +109,8 @@ public class ISalleImplDAO implements ISalleDAO{
 				salle.setNumero(rs.getInt("numero"));
 				salle.setOccupation(rs.getBoolean("occupation"));
 				salle.setTypesalle(Typesalle.valueOf(rs.getString("typesalle")));
-				if(salle.isOccupation()==false) {
-				salles.add(salle);}
+				//if(salle.isOccupation()==false) {
+				salles.add(salle);
 			}
 			ps.close();
 		}catch (Exception e) {
@@ -136,5 +138,36 @@ public class ISalleImplDAO implements ISalleDAO{
 			System.out.println("error");
 		}
 
+	}
+	
+	@Override
+	public List<Salle> listSallebyDate(Date date) {
+		ArrayList<Salle> salles = new ArrayList<Salle>();
+		
+		Connection connexion = DAOFACTORY.getConnection();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("select * from salles s,reservation r where s.id=r.Salle_Id and r.date=? and (r.crenau <>? or r.crenau <>? or r.crenau <>? or r.crenau <>?) ;");
+			ps.setDate(1, date);
+			ps.setString(2,Creneau.C1.toString() );
+			ps.setString(3,Creneau.C2.toString() );
+			ps.setString(4,Creneau.C3.toString() );
+			ps.setString(5,Creneau.C4.toString() );
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Salle salle=new Salle();
+				//System.out.print(rs.getString("description"));
+				salle.setId(Integer.parseInt(rs.getString("id")));
+				salle.setDescription(rs.getString("description"));
+				salle.setNumero(rs.getInt("numero"));
+				salle.setOccupation(rs.getBoolean("occupation"));
+				salle.setTypesalle(Typesalle.valueOf(rs.getString("typesalle")));
+				salles.add(salle);
+			}
+			ps.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error");
+		}
+		return salles;
 	}
 }

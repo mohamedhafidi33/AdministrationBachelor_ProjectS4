@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import beans.Role;
 import beans.User;
 
-public class UserTest {
+public class UserTest implements IUserDAO{
 	public User getUser(String username, String password) {
 		Connection conexion=DAOFACTORY.getConnection();
 		User p=new User();
@@ -47,5 +47,22 @@ public class UserTest {
 			e.printStackTrace();
 		}
 		return b;
+	}
+	@Override
+	public void ajouterUser(User user) {
+		Connection connexion = DAOFACTORY.getConnection();
+		try {
+			PreparedStatement ps = connexion.prepareStatement(
+					" insert into user(username,password,role)  values(?,?,?) ");
+			ps.setString(1, user.getUsername());
+			ps.setString(2, user.getPassword());
+			ps.setString(3, user.getRole().toString());
+			ps.executeUpdate();
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error");
+		}		
+		
 	}
 	}

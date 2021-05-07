@@ -7,4 +7,6 @@ public interface IProfesseurDAO {
 Professeur getProf(User user);
 
 Professeur getProfById(int id);
+
+void ajouterProf(Professeur prof);
 }

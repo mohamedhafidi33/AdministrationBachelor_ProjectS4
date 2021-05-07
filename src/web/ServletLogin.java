@@ -59,7 +59,7 @@ public class ServletLogin extends HttpServlet {
 		System.out.print(request.getServletPath());
 		HttpSession session = request.getSession();
 		session.setMaxInactiveInterval(3600);
-
+		
 		if (request.getServletPath().equals("/logout")) {
 			System.out.println(00);
 			session.removeAttribute("Employe");
@@ -108,7 +108,7 @@ public class ServletLogin extends HttpServlet {
 				request.getRequestDispatcher("/page_404.jsp").forward(request, response);
 			}
 		} else if (request.getServletPath().equals("/HomeAdmin")) {
-			request.getRequestDispatcher("/HomeAdmin").forward(request, response);
+			request.getRequestDispatcher("/HomeAdmin.jsp").forward(request, response);
 		}
 	}
 }
