@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import beans.Professeur;
 import beans.Role;
 import beans.User;
 
@@ -64,5 +65,41 @@ public class UserTest implements IUserDAO{
 			System.out.println("error");
 		}		
 		
+	}
+	@Override
+	public void supprimerUser(User user) {
+		System.out.println("hahowa id waaasl" +user.getId());
+		Connection connexion = DAOFACTORY.getConnection();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("delete from user where id=? ; ");
+			ps.setInt(1, user.getId());
+			ps.executeUpdate();
+	        ps.close();
+	}catch (Exception e) {
+		e.printStackTrace();
+		System.out.println("error");
+	}
+	}
+	
+	@Override
+	public User getUserById(int id) {
+		User user=new User();
+		Connection connexion = DAOFACTORY.getConnection();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("select * from user where id=? ;");
+			ps.setInt(1,id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				user.setId(Integer.parseInt(rs.getString("id")));
+				user.setUsername(rs.getString("username"));
+				user.setPassword(rs.getString("password"));
+				user.setRole(Role.valueOf(rs.getString("role")));
+			}
+			ps.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error");
+		}
+		return user;
 	}
 	}

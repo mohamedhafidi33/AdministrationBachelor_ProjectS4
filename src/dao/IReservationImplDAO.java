@@ -8,12 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Creneau;
+import beans.Professeur;
 import beans.Reservation;
 import beans.Salle;
 import beans.Typesalle;
 
 public class IReservationImplDAO implements IReservationDAO{
 	ISalleImplDAO isalle=new ISalleImplDAO();
+	IProfesseurImplDAO iprof=new IProfesseurImplDAO();
 	@Override
 	public void ajouterReservation(Reservation reservation) {
 		Connection connexion = DAOFACTORY.getConnection();
@@ -75,9 +77,35 @@ public class IReservationImplDAO implements IReservationDAO{
 				Reservation reservation=new Reservation();
 				reservation.setCrenau(Creneau.valueOf(rs.getString("crenau")));
 				reservation.setDate(rs.getDate("date"));
-				//reservation.setProfesseur(rs.getInt("Professeur_id"));
+				reservation.setProfesseur(iprof.getProfById(rs.getInt("Professeur_id")));
 				reservation.setSalle(isalle.getSalleById(rs.getInt("Salle_id")));
 				reservations.add(reservation);
+			}
+			ps.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error");
+		}
+		return reservations;
+	}
+	
+	@Override
+	public List<Reservation> ReservationByProf(Professeur prof){
+		List<Reservation> reservations = new ArrayList<Reservation>();
+		Connection connexion = DAOFACTORY.getConnection();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("select * from reservation where Professeur_Id=? ;");
+			ps.setInt(1, prof.getId());
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Reservation reservation=new Reservation();
+				reservation.setId(Integer.parseInt(rs.getString("reservation_id")));
+				reservation.setCrenau(Creneau.valueOf(rs.getString("crenau")));
+				reservation.setDate(rs.getDate("date"));
+				reservation.setProfesseur(iprof.getProfById(rs.getInt("Professeur_Id")));
+				reservation.setSalle(isalle.getSalleById(rs.getInt("Salle_Id")));
+				reservations.add(reservation);
+				System.out.println(reservations.get(0).getId());
 			}
 			ps.close();
 		}catch (Exception e) {

@@ -18,7 +18,7 @@ import dao.IProfesseurImplDAO;
 /**
  * Servlet implementation class ServletGestionProf
  */
-@WebServlet(urlPatterns = { "/ajouterProf","/addProf" })
+@WebServlet(urlPatterns = { "/ajouterProf","/addProf","/afficherProfs","/modifierProf","/deleteProf" })
 public class ServletGestionProf extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Professeur prof=new Professeur();
@@ -67,9 +67,32 @@ public class ServletGestionProf extends HttpServlet {
 			System.out.println(request.getParameter("gender"));
 			prof.setSexe(Gender.valueOf(request.getParameter("gender")));
 			iprof.ajouterProf(prof);
-			request.getRequestDispatcher("ajouterProf.jsp").forward(request, response);
+			request.getRequestDispatcher("/afficherProfs").forward(request, response);
 		}
 		
+		if(request.getServletPath().equals("/afficherProfs")) {
+			request.setAttribute("profs", iprof.listProfs());
+			request.getRequestDispatcher("afficherProfs.jsp").forward(request, response);
+		}
+		if(request.getServletPath().equals("/modifierProf")) {
+			prof.setId(Integer.parseInt(request.getParameter("id")));
+			prof.setNom(request.getParameter("nom1"));
+			prof.setPrenom(request.getParameter("prenom1"));
+			prof.setCin(request.getParameter("cin1"));
+			prof.setEmail(request.getParameter("email1"));
+			prof.setNationalite(request.getParameter("nationalite1"));
+			prof.setVille(request.getParameter("ville1"));
+			prof.setProvince(request.getParameter("province1"));
+			System.out.println(request.getParameter("email1"));
+			prof.setSexe(Gender.valueOf(request.getParameter("gender1")));
+			iprof.modifierProf(prof);
+			request.getRequestDispatcher("/afficherProfs").forward(request, response);
+		}
+		if(request.getServletPath().equals("/deleteProf")){
+			prof.setId(Integer.parseInt(request.getParameter("id")));
+			iprof.supprimerProf(prof);
+			request.getRequestDispatcher("/afficherProfs").forward(request, response);
+		}
 	}
 
 }

@@ -11,4 +11,8 @@ public interface IUserDAO {
 	
 	void ajouterUser(User user);
 
+	void supprimerUser(User user);
+
+	User getUserById(int id);
+
 }

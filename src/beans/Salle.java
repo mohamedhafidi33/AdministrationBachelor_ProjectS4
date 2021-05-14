@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import dao.ISalleImplDAO;
+
 @Entity
 @Table(name = "SALLES")
 public class Salle implements Serializable {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -80,5 +82,10 @@ public class Salle implements Serializable {
 
 	public void setTypesalle(Typesalle typesalle) {
 		this.typesalle = typesalle;
+	}
+	public Boolean dispoParCreneau1(String C,int i) {
+		ISalleImplDAO isalle=new ISalleImplDAO();
+	return 	isalle.dispoParCreneau1(C,i);
+		
 	}
 }

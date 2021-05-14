@@ -14,4 +14,5 @@ public interface ISalleDAO {
 	void modifierSalle(Salle salle);
 	
 	List<Salle> listSallebyDate(Date date);
+//	List dispoParCreneau1(Date date);
 }

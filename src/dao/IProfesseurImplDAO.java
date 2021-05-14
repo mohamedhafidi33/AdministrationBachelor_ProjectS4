@@ -3,6 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import beans.Etudiant;
 import beans.Gender;
@@ -33,7 +35,7 @@ public class IProfesseurImplDAO implements IProfesseurDAO{
 					p.setNom(rs.getString("nom"));
 					p.setPrenom(rs.getString("prenom"));
 					p.setProvince(rs.getString("province"));
-					//p.setSexe(Gender.valueOf(rs.getString("sexe")));
+					p.setSexe(Gender.valueOf(rs.getString("sexe")));
 					p.setVille(rs.getString("ville"));
 				}			
 			ps.close();
@@ -42,6 +44,24 @@ public class IProfesseurImplDAO implements IProfesseurDAO{
 			e.printStackTrace();
 		}
 		return p;
+	}
+	
+	@Override
+	public void supprimerProf(Professeur prof) {
+		Professeur pro=getProfById(prof.getId());
+		Connection connexion = DAOFACTORY.getConnection();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("delete from professeur where id=? ; ");
+			ps.setInt(1, prof.getId());
+			ps.executeUpdate();
+	        ps.close();
+	}catch (Exception e) {
+		e.printStackTrace();
+		System.out.println("error");
+	}
+		//System.out.println(prof.getId());
+		
+		iuser.supprimerUser(pro.getUser());
 	}
 	
 	@Override
@@ -60,8 +80,9 @@ public class IProfesseurImplDAO implements IProfesseurDAO{
 				p.setNom(rs.getString("nom"));
 				p.setPrenom(rs.getString("prenom"));
 				p.setProvince(rs.getString("province"));
-				//p.setSexe(Gender.valueOf(rs.getString("sexe")));
-				p.setVille(rs.getString("ville"));
+				p.setSexe(Gender.valueOf(rs.getString("sexe")));
+				p.setVille(rs.getString("ville"));	
+				p.setUser(iuser.getUserById(Integer.parseInt(rs.getString("User_id"))));
 			}
 			ps.close();
 		}catch (Exception e) {
@@ -99,6 +120,59 @@ public class IProfesseurImplDAO implements IProfesseurDAO{
 			System.out.println("error");
 		}		
 	}
-
 	
+	@Override
+	public List<Professeur> listProfs() {
+		ArrayList<Professeur> profs = new ArrayList<Professeur>();
+		
+		Connection connexion = DAOFACTORY.getConnection();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("select * from professeur ;");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Professeur prof=new Professeur();
+				prof.setId(Integer.parseInt(rs.getString("id")));
+				prof.setNom(rs.getString("nom"));
+				prof.setPrenom(rs.getString("prenom"));
+				prof.setCin(rs.getString("cin"));
+				prof.setNationalite(rs.getString("nationalite"));
+				prof.setVille(rs.getString("ville"));
+				prof.setProvince(rs.getString("province"));
+				prof.setEmail(rs.getString("email"));
+				prof.setSexe(Gender.valueOf(rs.getString("sexe")));
+				profs.add(prof);
+			}
+			ps.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error");
+		}
+		return profs;
 	}
+	@Override
+	public void modifierProf(Professeur prof) {
+		Connection connexion = DAOFACTORY.getConnection();
+		try {
+			PreparedStatement ps = connexion.prepareStatement("update professeur set id=? , nom=? , prenom=? , cin=?  , email=? , nationalite=? , ville=? , province=? , sexe=? where id=? ;");
+			
+			ps.setInt(1,prof.getId());
+			ps.setString(2, prof.getNom());
+			ps.setString(3, prof.getPrenom());
+			ps.setString(4, prof.getCin());
+			ps.setString(5, prof.getEmail());
+			ps.setString(6, prof.getNationalite());
+			ps.setString(7, prof.getVille());
+			ps.setString(8, prof.getProvince());
+			ps.setString(9, prof.getSexe().toString());
+			ps.setInt(10, prof.getId());
+			ps.executeUpdate();
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error");
+		}
+
+	}
+	
+}
+	

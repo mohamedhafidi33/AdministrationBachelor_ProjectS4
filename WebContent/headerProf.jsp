@@ -32,7 +32,9 @@
                     <li><a><i class="fa fa-home"></i> Gestion des salles <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="reserverSalle">Reserver salle</a></li>
+                         <li><a href="SallesReserves">Mes salles reservees </a></li>
                       </ul>
+                     
                     </li>
                     <li><a><i class="fa fa-edit"></i> Gestion des absences <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">

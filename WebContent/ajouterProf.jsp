@@ -25,7 +25,11 @@
 <!-- Custom Theme Style -->
 <link href="build/css/custom.min.css" rel="stylesheet">
 </head>
-
+<%
+if (session.getAttribute("admin") == null) {
+	response.sendRedirect("login.jsp");
+}
+%>
 <body class="nav-md">
 	<div class="container body">
 		<div class="main_container">

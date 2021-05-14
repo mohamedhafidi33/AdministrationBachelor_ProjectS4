@@ -78,7 +78,7 @@
                    <li><a><i class="fa fa-table"></i> Gestion des professeurs <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="ajouterProf">Ajouter professeur </a></li>
-                      <li><a href="form_validation.html">Liste des professeurs </a></li>
+                      <li><a href="afficherProfs">Liste des professeurs </a></li>
                       
                       <!--<li><a href="tables_dynamic.html">Table Dynamic</a></li>-->
                     </ul>

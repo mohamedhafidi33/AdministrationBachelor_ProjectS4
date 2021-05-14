@@ -41,7 +41,7 @@
             <div class="">
               <div class="page-title">
                 <div class="title_left">
-                  <h3>Liste des Salles disponibles </h3>
+                  <h3>Liste des Salles reservees </h3>
                 </div>
 			<form method="post" action="sendDate" >
                 <div class="title_right">
@@ -106,17 +106,17 @@
                             <!--<th>Team Members</th>-->                   
                             <th>Description </th>
                             <th style="width: 20%"> Type de salle </th>
-                            <th>Creneau 1</th>
-                            <th>Creneau 2</th>
-                            <th>Creneau 3</th>
-                            <th>Creneau 4</th>
+                            <th>Date</th>
+                            <th>Creneau</th>
+                            <th>Liberation</th>
                           </tr>
                          
                         </thead>
                         
                         <tbody>
-                        <form method="post" action="reserver" > 
+                        <form method="post" action="libererSalle" > 
                           <c:forEach items="${salles}" var="salle">
+                          <c:forEach items="${reservs}" var="reserv">
                           <tr>
                             
                             <td> <a>${salle.id } 
@@ -126,8 +126,6 @@
                             <td> <a> ${salle.numero } 
        							<input type="hidden"  name="numero" value=${salle.numero } />
                               </a> </td>
-                            
-                           
                             <td> <a> ${salle.description } 
                             <input type="hidden"  name="description" value=${salle.description } />
                             </a> </td>
@@ -136,28 +134,17 @@
                               <input type="hidden"  name="typesalle" value=${salle.typesalle }  />
                               </a> </td>
                             
-                            
-                              <!--<small>47% Complete</small>-->
-                            
-                            
-                            <td>
-                              <!--<button class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Consult </button>-->
+                           <td>  <a> ${reserv.date} 
+                              <input type="hidden"  name="date" value=${reserv.date }   />
+                              </a> </td>
                               
-                  <button name="creneau" value="C1" type="submit" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg" >Réserver </button>
-                              
-					 
-					  </td>
-                <td>
-                  <button name="creneau" value="C2" type="submit" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg" >Réserver </button>
-                  </td>
-                 <td>
-                 
-                  <button name="creneau" value="C3" type="submit" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg" >Réserver </button>
-                  </td>
+                              <td>  <a> ${reserv.crenau} 
+                              <input type="hidden"  name="creneau" value=${reserv.crenau }   />
+                              </a> </td> 
                   <td>
-                  <button name="creneau" value="C4" type="submit" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg" >Réserver </button>
+                  <button type="submit" class="btn btn-primary btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg" >Libérer </button>
                   </td>
-                   
+                    </c:forEach>
                 </c:forEach>
                             </form>                        
                             

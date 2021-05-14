@@ -45,7 +45,7 @@ if (session.getAttribute("admin") == null) {
 			<div class="">
 				<div class="page-title">
 					<div class="title_left">
-						<h3>Liste des Salles</h3>
+						<h3>Liste des Professeurs</h3>
 					</div>
 
 					<div class="title_right">
@@ -96,34 +96,50 @@ if (session.getAttribute("admin") == null) {
 									<thead>
 										<tr>
 											<th style="width: 1%">Id</th>
-											<th style="width: 20%">Numero</th>
+											<th style="width: 20%">Nom</th>
 											<!--<th>Team Members</th>-->
-											<th>Description</th>
-											<th style="width: 20%">Type de salle</th>
+											<th>Prenom</th>
+											<th style="width: 20%">CIN</th>
+											<th style="width: 20%">Email</th>
+											<th style="width: 20%">Ville</th>
+											<th style="width: 20%">Nationalite</th>
+											<th style="width: 20%">Sexe</th>
 											<th>Modifier/Supprimer</th>
 										</tr>
 
 									</thead>
 
 									<tbody>
-										<form method="post" action="modifierSalle">
-											<c:forEach items="${salles}" var="salle">
+										<form method="post" action="modifierProf">
+											<c:forEach items="${profs}" var="prof">
 
 												<tr>
-													<td>${salle.id}<input type="hidden" name="id"
-														value=${salle.id } />
+													<td>${prof.id}<input type="hidden" name="id"
+														value=${prof.id } />
 													</td>
-													<td><a> ${salle.numero} <input type="hidden"
-															name="numero" value=${salle.numero } />
+													<td><a> ${prof.nom} <input type="hidden"
+															name="numero" value=${prof.nom } />
 													</a> <br /> <!--<small>Created 01.01.2015</small>--></td>
 
 													</td>
-													<td><a> ${salle.description} <input type="hidden"
-															name="description" value=${salle.description } />
+													<td><a> ${prof.prenom} <input type="hidden"
+															name="description" value=${prof.prenom } />
 													</a></td>
-													<td><a> ${salle.typesalle} <input type="hidden"
-															name="typesalle" value=${salle.typesalle } />
+													<td><a> ${prof.cin} <input type="hidden"
+															name="typesalle" value=${prof.cin } />
 													</a> <br /> <!--<small>Created 01.01.2015</small>--></td>
+													<td><a> ${prof.email} <input type="hidden"
+															name="typesalle" value=${prof.email } />
+													</a> <br /> <!--<small>Created 01.01.2015</small>--></td>
+													<td><a> ${prof.ville} <input type="hidden"
+															name="description" value=${prof.ville } />
+													</a></td>
+													<td><a> ${prof.nationalite} <input type="hidden"
+															name="nationalite" value=${prof.nationalite } />
+													</a></td>
+													<td><a> ${prof.sexe} <input type="hidden"
+															name="sexe" value=${prof.sexe } />
+													</a></td>
 													</div>
 													</div>
 													<!--<small>47% Complete</small>-->
@@ -145,7 +161,7 @@ if (session.getAttribute("admin") == null) {
 																	<div class="col-md-12 col-sm-12 ">
 																		<div class="x_panel">
 																			<div class="x_title">
-																				<h2>Modification de salle</h2>
+																				<h2>Modification de professeur</h2>
 																				<ul class="nav navbar-right panel_toolbox">
 																					<li><a class="collapse-link"><i
 																							class="fa fa-chevron-up"></i></a></li>
@@ -165,67 +181,116 @@ if (session.getAttribute("admin") == null) {
 
 																							<div class="card-body bulk_action">
 																								<h5 class="card-title">Modification de
-																									salle</h5>
-																										<div class="form-row">
-																										<div class="col-md-6">
-																											<div class="position-relative form-group">
-																												<label for="last_name_fr" class="">Id
-																													de salle</label><input
-																													value='<c:out value="${salle.id }"></c:out>'
-																													name="id" id="last_name_fr"
-																													placeholder="" type="text"
-																													class="form-control">
-																											</div>
-																										</div>
-
-																									</div>
-																									<div class="form-row">
-																										<div class="col-md-6">
-																											<div class="position-relative form-group">
-																												<label for="last_name_fr" class="">Numero
-																													de salle</label><input
-																													value='<c:out value="${salle.numero }"></c:out>'
-																													name="numero1" id="last_name_fr"
-																													placeholder="" type="text"
-																													class="form-control">
-																											</div>
-																										</div>
-
-																									</div>
-																									<div class="form-row">
-																										<div class="col-md-6">
-																											<div class="position-relative form-group">
-																												<label for="first_name_fr" class="">Description</label><input
-																												name="description1"	value='<c:out value="${salle.description }"></c:out>'
-																													
-																													id="first_name_fr"
-																													placeholder="" type="text"
-																													class="form-control">
-																											</div>
-																										</div>
-
-																									</div>
-
-																									<div class="form-row">
-																										<div class="col-md-6">
-																											<div class="position-relative form-group">
-																												<label
-																													class="control-label col-md-3 col-sm-3 ">Type
-																													de salle</label>
-																												<div class="col-md-9 col-sm-9 ">
-																													<select class="form-control"
-																														name="typesalle1">
-																														<option>Cours</option>
-																														<option>TP</option>
-																														<option>LA</option>
-																													</select>
-																												</div>
-																											</div>
+																									professeur</h5>
+																								<div class="form-row">
+																									<div class="col-md-6">
+																										<div class="position-relative form-group">
+																											<label for="last_name_fr" class="">Id
+																											</label><input
+																												value='<c:out value="${prof.id }"></c:out>'
+																												name="id" id="last_name_fr" placeholder=""
+																												type="text" class="form-control">
 																										</div>
 																									</div>
+
+																								</div>
+																								<div class="form-row">
+																									<div class="col-md-6">
+																										<div class="position-relative form-group">
+																											<label for="last_name_fr" class="">Nom
+																											</label><input
+																												value='<c:out value="${prof.nom }"></c:out>'
+																												name="nom1" id="last_name_fr"
+																												placeholder="" type="text"
+																												class="form-control">
+																										</div>
+																									</div>
+
+																								</div>
+																								<div class="form-row">
+																									<div class="col-md-6">
+																										<div class="position-relative form-group">
+																											<label for="first_name_fr" class="">Prenom</label><input
+																												name="prenom1"
+																												value='<c:out value="${prof.prenom }"></c:out>'
+																												id="first_name_fr" placeholder=""
+																												type="text" class="form-control">
+																										</div>
+																									</div>
+
+																								</div>
+																								
+																								<div class="form-row">
+																									<div class="col-md-6">
+																										<div class="position-relative form-group">
+																											<label for="first_name_fr" class="">CIN</label><input
+																												name="cin1"
+																												value='<c:out value="${prof.cin }"></c:out>'
+																												id="first_name_fr" placeholder=""
+																												type="text" class="form-control">
+																										</div>
+																									</div>
+
+																								</div>
+																								
+																								<div class="form-row">
+																									<div class="col-md-6">
+																										<div class="position-relative form-group">
+																											<label for="first_name_fr" class="">Email</label><input
+																												name="email1"
+																												value='<c:out value="${prof.email }"></c:out>'
+																												id="first_name_fr" placeholder=""
+																												type="text" class="form-control">
+																										</div>
+																									</div>
+
+																								</div>
+																								
+																								<div class="form-row">
+																									<div class="col-md-6">
+																										<div class="position-relative form-group">
+																											<label for="first_name_fr" class="">Ville</label><input
+																												name="ville1"
+																												value='<c:out value="${prof.ville }"></c:out>'
+																												id="first_name_fr" placeholder=""
+																												type="text" class="form-control">
+																										</div>
+																									</div>
+
+																								</div>
+																								
+																								<div class="form-row">
+																									<div class="col-md-6">
+																										<div class="position-relative form-group">
+																											<label for="first_name_fr" class="">Nationalite</label><input
+																												name="nationalite1"
+																												value='<c:out value="${prof.nationalite }"></c:out>'
+																												id="first_name_fr" placeholder=""
+																												type="text" class="form-control">
+																										</div>
+																									</div>
+
+																								</div>
+																								
+																								<div class="form-row">
+																									<div class="col-md-6">
+																										<div class="position-relative form-group">
+																											<label
+																												class="control-label col-md-3 col-sm-3 ">Sexe</label>
+																											<div class="col-md-9 col-sm-9 ">
+																												<select class="form-control"
+																													name="gender1">
+																													<option>male</option>
+																													<option>female</option>
+																												</select>
+																											</div>
+																										</div>
+																									</div>
+																								</div>
 																							</div>
 																							<button class="mt-2 btn btn-primary col-md-12"
 																								type="submit">Modifier</button>
+
 																						</div>
 																					</div>
 																				</div>
@@ -234,13 +299,14 @@ if (session.getAttribute("admin") == null) {
 																	</div>
 																</div>
 															</div>
-														</div> 
-														<button class="btn btn-danger btn-xs" formmethod="POST" formaction="deleteSalle">Suprimer</button>
+														</div>
+														<button class="btn btn-danger btn-xs" formmethod="POST"
+															formaction="deleteProf">Suprimer</button>
 													</td>
 												</tr>
-												</form>
+										</form>
 										</c:forEach>
-										
+
 
 
 
