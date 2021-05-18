@@ -1,8 +1,15 @@
 package beans;
 
-import java.util.Date;
+import java.sql.Date;
+
+
+
 import java.util.List;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.*;
+import java.util.Scanner;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -74,9 +81,6 @@ public class Etudiant {
 	@OneToMany(mappedBy = "etudiant")
 	private List<Document> documents;
 	
-	//@OneToMany(mappedBy = "etudiant")
-	//private List<Ternaire_Absence> Ternaire_Absence;
-
 	@ManyToOne
 	@JoinColumn(name = "filiere_id", referencedColumnName = "id")
 	private Filiere filiere;
@@ -124,6 +128,14 @@ public class Etudiant {
 		this.cin=cin;
 	}
 	
+
+	public Etudiant(int id, String cin, String cne, String mention) {
+		super();
+		this.id = id;
+		this.cin = cin;
+		this.cne = cne;
+		this.mention = mention;
+	}
 
 	public int getId() {
 		return id;
@@ -261,5 +273,6 @@ public class Etudiant {
 		this.nationalite = nationalite;
 	}
 }
+
 
 

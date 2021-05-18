@@ -12,6 +12,10 @@ public class Filiere {
 @Column(name="id")
 private int id;
 
+public Filiere() {
+	super();
+}
+
 @Column(name="nomFiliere")
 private String nom;
 
@@ -21,4 +25,35 @@ private List<Etudiant> etudiants;
 @OneToMany(mappedBy="filiere")
 private List<Semestre> semestres;
 
+public int getId() {
+	return id;
 }
+
+public void setId(int id) {
+	this.id = id;
+}
+
+public String getNom() {
+	return nom;
+}
+
+public void setNom(String nom) {
+	this.nom = nom;
+}
+
+public Filiere(int id, String nom) {
+	super();
+	this.id = id;
+	this.nom = nom;
+}
+
+public Filiere(int id, String nom, List<Etudiant> etudiants, List<Semestre> semestres) {
+	super();
+	this.id = id;
+	this.nom = nom;
+	this.etudiants = etudiants;
+	this.semestres = semestres;
+}
+
+}
+ 

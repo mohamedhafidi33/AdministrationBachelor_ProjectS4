@@ -1,0 +1,15 @@
+/IAbsenceDAO.class
+/IDocumentDAO.class
+/IEtudiantDAO.class
+/IEtudiantImplDAO.class
+/IFiliereDAO.class
+/IProfesseurDAO.class
+/IProfesseurImplDAO.class
+/ISalleDAO.class
+/ISalleImplDAO.class
+/IUserDAO.class
+/IUserImplDAO.class
+/SingletonConnection.class
+/Testdao.class
+/IFiliereImplDAO.class
+/IDocumentImplDAO.class

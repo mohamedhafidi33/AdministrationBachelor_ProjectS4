@@ -2,7 +2,6 @@ package hibernate.demo;
 
 import org.hibernate.Session;
 
-
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -10,9 +9,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import beans.Role;
-import beans.User;
+import beans.Salle;
 
-public class Usertest {
+public class SalleTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -24,7 +23,7 @@ public class Usertest {
 		try {
 // create a student object
 			System.out.println("Creating new user...");
-			User tempuser = new User("Asmae ", "mahjoubiAA ",Role.etudiant);
+			Salle tempuser = new Salle(1, false,"description");
 			
 
 // start a transaction
@@ -42,4 +41,5 @@ public class Usertest {
 			factory.close();
 		}
 	}
+
 }
