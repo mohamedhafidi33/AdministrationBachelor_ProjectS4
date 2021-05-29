@@ -9,6 +9,8 @@ public interface IReservationDAO {
 	void ajouterReservation(Reservation reservation);
 	void supprimerReservation(Reservation reservation);
 	List<Reservation> listreseRvations();
-	void supprimerParSalle(Salle salle);
+	
 	List<Reservation> ReservationByProf(Professeur prof);
+	//void supprimerParSalle(Reservation reservation);
+	void supprimerParSalle(Salle salle);
 }

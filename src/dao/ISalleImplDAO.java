@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Creneau;
+import beans.Reservation;
 import beans.Salle;
 import beans.Typesalle;
 
@@ -171,15 +172,16 @@ public class ISalleImplDAO implements ISalleDAO{
 		return salles;
 	}
 	
-	
-	public Boolean dispoParCreneau1(String C,int i) {
+	@Override
+	public Boolean dispoParCreneau1(Reservation reservation) {
 		ArrayList<Salle> salles = new ArrayList<Salle>();
-		
+		//boolean test=false;
 		Connection connexion = DAOFACTORY.getConnection();
 		try {
-			PreparedStatement ps=connexion.prepareStatement("select * from salles s,reservation r where s.id=r.Salle_Id and r.crenau=? and r.Salle_Id=?;");
-			ps.setString(1, C);
-			ps.setInt(2, i);
+			PreparedStatement ps=connexion.prepareStatement("select * from salles s,reservation r where s.id=r.Salle_Id and r.crenau=? and r.Salle_Id=? and date=?;");
+			ps.setString(1, reservation.getCrenau().toString());
+			ps.setInt(2, reservation.getSalle().getId());
+			ps.setDate(3, (Date) reservation.getDate());
 //			ps.setString(2,Creneau.C1.toString() );
 //			ps.setString(3,Creneau.C2.toString() );
 //			ps.setString(4,Creneau.C3.toString() );
@@ -196,11 +198,11 @@ public class ISalleImplDAO implements ISalleDAO{
 				salles.add(salle);
 			}
 			ps.close();
+			//test= (salles.get(0).getId()==reservation.getSalle().getId() && rs.getString("crenau").equals(reservation.getCrenau()) && rs.getString("date").equals(reservation.getDate().toString()) );
 		}catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("error");
 		}
 		return salles.isEmpty();
-		
 	}
 }

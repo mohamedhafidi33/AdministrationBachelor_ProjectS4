@@ -33,8 +33,6 @@ if (session.getAttribute("admin") == null) {
 }
 %>
 <body class="nav-md">
-	<c:out value="Bonjour !!!" />
-	<br />
 	<div class="container body">
 		<%@include file="headerAdmin.jsp"%>
 
@@ -240,7 +238,8 @@ if (session.getAttribute("admin") == null) {
 												</tr>
 												</form>
 										</c:forEach>
-										
+										</tbody>
+										</table>
 
 
 

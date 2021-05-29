@@ -15,7 +15,7 @@ import dao.IEtudiantImplDAO;
 import dao.IProfesseurDAO;
 import dao.IProfesseurImplDAO;
 import dao.IUserDAO;
-import dao.JTest;
+import dao.ExcelGenerator;
 import dao.UserTest;
 
 /**
@@ -105,9 +105,12 @@ public class ServletLogin extends HttpServlet {
 
 			} else {
 				System.out.print("failed!!!");
+				boolean cnxError=true;
+				request.setAttribute("cnxError", cnxError);
 				request.getRequestDispatcher("/page_404.jsp").forward(request, response);
 			}
 		} else if (request.getServletPath().equals("/HomeAdmin")) {
+			request.setAttribute("countProfs", iprof.countProfs());
 			request.getRequestDispatcher("/HomeAdmin.jsp").forward(request, response);
 		}
 	}

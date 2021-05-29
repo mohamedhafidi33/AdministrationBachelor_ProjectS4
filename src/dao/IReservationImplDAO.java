@@ -40,8 +40,10 @@ public class IReservationImplDAO implements IReservationDAO{
 	public void supprimerReservation(Reservation reservation) {
 		Connection connexion = DAOFACTORY.getConnection();
 		try {
-			PreparedStatement ps=connexion.prepareStatement("delete from reservation where id=? ; ");
-			ps.setInt(1, reservation.getId()+1);
+			PreparedStatement ps=connexion.prepareStatement("delete from reservation where Salle_Id=? and crenau=? and date=? ; ");
+			ps.setInt(1, reservation.getSalle().getId());
+			ps.setString(2, reservation.getCrenau().toString());
+			ps.setString(3, reservation.getDate().toString());
 			ps.executeUpdate();
 	        ps.close();
 	}catch (Exception e) {

@@ -29,7 +29,7 @@
         response.sendRedirect("login.jsp");} 
    	 %>
     <body class="nav-md">
-    <c:out value="Bonjour !!!" /><br/>
+    
       <div class="container body">
        <%@include file="headerProf.jsp" %>
           <!-- top navigation -->

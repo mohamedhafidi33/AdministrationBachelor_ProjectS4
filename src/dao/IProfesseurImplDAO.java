@@ -96,10 +96,11 @@ public class IProfesseurImplDAO implements IProfesseurDAO{
 	public void ajouterProf(Professeur prof) {
 		Connection connexion = DAOFACTORY.getConnection();
 		User user=new User();
+		 System.out.println("Heere's the name mn dao"+prof.getPrenom());
 		try {
 			PreparedStatement ps = connexion.prepareStatement(
 					" insert into professeur(nom,prenom,cin,email,nationalite,ville,province,sexe,User_id) values(?,?,?,?,?,?,?,?,?) ");
-			user.setUsername(prof.getPrenom().substring(0,1)+prof.getNom());
+			user.setUsername(prof.getPrenom().substring(1,2)+prof.getNom());
 			user.setPassword(prof.getCin());
 			user.setRole(Role.professeur);
 			iuser.ajouterUser(user);
@@ -139,7 +140,7 @@ public class IProfesseurImplDAO implements IProfesseurDAO{
 				prof.setVille(rs.getString("ville"));
 				prof.setProvince(rs.getString("province"));
 				prof.setEmail(rs.getString("email"));
-				prof.setSexe(Gender.valueOf(rs.getString("sexe")));
+				//prof.setSexe(Gender.valueOf(rs.getString("sexe")));
 				profs.add(prof);
 			}
 			ps.close();
@@ -173,6 +174,99 @@ public class IProfesseurImplDAO implements IProfesseurDAO{
 		}
 
 	}
-	
+	@Override
+	public void addEnseignement(int idProf,int idMatiere) {
+		Connection connexion = DAOFACTORY.getConnection();
+		User user=new User();
+		try {
+			PreparedStatement ps = connexion.prepareStatement(
+					" insert into enseignements(Professeur_id,Matiere_id) values(?,?) ");
+			ps.setInt(1, idProf);
+			ps.setInt(2, idMatiere);
+			ps.executeUpdate();
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error");
+		}		
+	}
+	@Override
+	public int getIdProf(String nom,String prenom){
+		int idprof=0;
+		Connection connexion = DAOFACTORY.getConnection();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("select * from professeur where nom=? and prenom=? ;");
+			ps.setString(1, nom);
+			ps.setString(2, prenom);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				idprof=Integer.parseInt(rs.getString("id"));
+			}
+			ps.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error");
+		}
+		return idprof;
+	}
+	@Override
+	public void deleteEnseignement(int profId) {
+		Connection connexion = DAOFACTORY.getConnection();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("delete from enseignements where Professeur_id=? ; ");
+			ps.setInt(1, profId);
+			ps.executeUpdate();
+	        ps.close();
+	}catch (Exception e) {
+		e.printStackTrace();
+		System.out.println("error");
+	}
+	}
+	@Override
+	public int countProfs() {
+		int cmpt=0;
+		Connection connexion = DAOFACTORY.getConnection();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("SELECT COUNT(*) FROM professeur ;");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				cmpt=rs.getInt("COUNT(*)");
+			}
+			ps.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error");
+		}
+		return cmpt;
+	}
+	@Override
+	public List<Professeur> listProfsBySemestre(int semestre_Id) {
+		ArrayList<Professeur> profs = new ArrayList<Professeur>();
+		
+		Connection connexion = DAOFACTORY.getConnection();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("select * from professeur p , enseignements e , matiere ma , module mo , semestre s where p.id=e.Professeur_id and e.Matiere_id=ma.id and ma.module_id=mo.id and mo.semestre_id=s.id and s.id=? ;");
+			ps.setInt(1, semestre_Id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Professeur prof=new Professeur();
+				prof.setId(Integer.parseInt(rs.getString("id")));
+				prof.setNom(rs.getString("nom"));
+				prof.setPrenom(rs.getString("prenom"));
+				prof.setCin(rs.getString("cin"));
+				prof.setNationalite(rs.getString("nationalite"));
+				prof.setVille(rs.getString("ville"));
+				prof.setProvince(rs.getString("province"));
+				prof.setEmail(rs.getString("email"));
+				prof.setSexe(Gender.valueOf(rs.getString("sexe")));
+				profs.add(prof);
+			}
+			ps.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error");
+		}
+		return profs;
+	}
 }
 	

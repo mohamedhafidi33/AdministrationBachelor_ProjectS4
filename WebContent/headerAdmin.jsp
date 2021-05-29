@@ -48,6 +48,7 @@
                     <ul class="nav child_menu">
                       <li><a href="ajouterSalle">Ajouter salles</a></li>
                       <li><a href="afficheSalles">Liste des salles</a></li>
+                      <li><a href="imprimerSalles">Imprimer liste des salles</a></li>
                       <!--<li><a href="media_gallery.html">Supprimer salles</a></li>-->
                       <!--<li><a href="typography.html">Typography</a></li>
                       <li><a href="icons.html">Icons</a></li>
@@ -79,6 +80,7 @@
                     <ul class="nav child_menu">
                       <li><a href="ajouterProf">Ajouter professeur </a></li>
                       <li><a href="afficherProfs">Liste des professeurs </a></li>
+                      <li><a href="imprimerProfs">Imprimer liste des professeurs </a></li>
                       
                       <!--<li><a href="tables_dynamic.html">Table Dynamic</a></li>-->
                     </ul>

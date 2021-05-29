@@ -30,7 +30,7 @@ import dao.ISalleImplDAO;
  * Servlet implementation class ServletReservationSalle
  */
 @WebServlet(urlPatterns = { "/ajouterSalle", "/addSalle", "/afficheSalles", "/reserverSalle", "/reserver",
-		"/deleteSalle", "/sendDate", "/modifierSalle", "/SallesReserves", "/libererSalle" })
+		"/deleteSalle", "/sendDate", "/modifierSalle", "/SallesReserves", "/libererSalle", "/imprimerSalles" })
 public class ServletReservationSalle extends HttpServlet {
 	Date datum;
 	Salle salle = new Salle();
@@ -107,6 +107,8 @@ public class ServletReservationSalle extends HttpServlet {
 		}
 
 		else if (request.getServletPath().equals("/sendDate")) {
+			datum = Date.valueOf(request.getParameter("date"));
+			session.setAttribute("datum", datum);
 			System.out.println("hahowa  date " + request.getParameter("date"));
 			if (isalle.listSallebyDate(Date.valueOf(request.getParameter("date"))).isEmpty()) {
 				this.getServletContext().getRequestDispatcher("/reserverSalle").forward(request, response);
@@ -124,27 +126,39 @@ public class ServletReservationSalle extends HttpServlet {
 		}
 
 		else if (request.getServletPath().equals("/reserver")) {
+			// boolean rsrv=false;
 			session.getAttribute("professeur_id");
 			Reservation reservation = new Reservation();
 			reservation.setSalle(isalle.getSalleById(Integer.parseInt(request.getParameter("id"))));
+			reservation.setProfesseur(
+					iprof.getProfById(Integer.parseInt(session.getAttribute("professeur_id").toString())));
 			if (request.getParameter("creneau").equals("C1")) {
 				System.out.println(request.getParameter("creneau"));
 				reservation.setCrenau(Creneau.C1);
 			} else if (request.getParameter("creneau").equals("C2")) {
 				reservation.setCrenau(Creneau.C2);
 				System.out.println(request.getParameter("creneau"));
-			}  else if (request.getParameter("creneau").equals("C3")) {
+			} else if (request.getParameter("creneau").equals("C3")) {
 				System.out.println("creneau3********************************");
 				reservation.setCrenau(Creneau.C3);
-			}  else if (request.getParameter("creneau").equals("C4")){
+			} else if (request.getParameter("creneau").equals("C4")) {
 				System.out.println("creneau4********************************");
 				reservation.setCrenau(Creneau.C4);
 			}
-			System.out.println("here is the date" + session.getAttribute("datum"));
-			reservation.setDate(datum);
-			reservation.setProfesseur(
-					iprof.getProfById(Integer.parseInt(session.getAttribute("professeur_id").toString())));
-			//irsv.ajouterReservation(reservation);
+			if (session.getAttribute("datum") == null) {
+				reservation.setDate(Date.valueOf(java.time.LocalDate.now().toString()));
+				System.out.println(java.time.LocalDate.now());
+			} else {
+				reservation.setDate(Date.valueOf(session.getAttribute("datum").toString()));
+			}
+			if (isalle.dispoParCreneau1(reservation) == true) {
+				irsv.ajouterReservation(reservation);
+			} else {
+				System.out.println("3aaamra akhuya");
+				boolean rsrvError = true;
+				request.setAttribute("rsrvError", rsrvError);
+				request.getRequestDispatcher("/page_404.jsp").forward(request, response);
+			}
 			System.out.println("Done !!!!!!!!!!!!!!");
 			this.getServletContext().getRequestDispatcher("/SallesReserves").forward(request, response);
 		}
@@ -169,21 +183,30 @@ public class ServletReservationSalle extends HttpServlet {
 			Professeur prof = new Professeur();
 			List<Salle> salles = new ArrayList<Salle>();
 			prof.setId(Integer.parseInt(session.getAttribute("professeur_id").toString()));
-			for (int i = 0; i < irsv.ReservationByProf(prof).size(); i++) {
+			int i=0;
+			while(i< irsv.ReservationByProf(prof).size()) {
 				salles.add(irsv.ReservationByProf(prof).get(i).getSalle());
+				i++;
 			}
 			request.setAttribute("reservs", irsv.ReservationByProf(prof));
 			request.setAttribute("salles", salles);
 			this.getServletContext().getRequestDispatcher("/SallesReserves.jsp").forward(request, response);
 		}
 		if (request.getServletPath().equals("/libererSalle")) {
-			Salle salle = new Salle();
-			salle.setId(Integer.parseInt(request.getParameter("id")));
-			salle.setNumero(Integer.parseInt(request.getParameter("numero")));
-			salle.setDescription(request.getParameter("description"));
-			salle.setTypesalle(Typesalle.valueOf(request.getParameter("typesalle")));
-			irsv.supprimerParSalle(salle);
+			Reservation reservation = new Reservation();
+			reservation.setSalle(isalle.getSalleById(Integer.parseInt(request.getParameter("id"))));
+			reservation.setCrenau(Creneau.valueOf(request.getParameter("creneau")));
+			reservation.setDate(Date.valueOf(request.getParameter("date")));
+			irsv.supprimerReservation(reservation);
 			this.getServletContext().getRequestDispatcher("/SallesReserves").forward(request, response);
+		}
+		boolean print = false;
+		if (request.getServletPath().equals("/imprimerSalles")) {
+			print = true;
+			System.out.print("here you are ");
+			request.setAttribute("salles", isalle.listsalles());
+			request.setAttribute("printSalle", print);
+			this.getServletContext().getRequestDispatcher("/Print.jsp").forward(request, response);
 		}
 	}
 }

@@ -38,7 +38,7 @@
                     </li>
                     <li><a><i class="fa fa-edit"></i> Gestion des absences <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                        <li><a href="form.html">Liste des étudiants</a></li>
+                        <li><a href="AjouterAbsence">Ajouter Absences</a></li>
                       </ul>
                     </li>
                     

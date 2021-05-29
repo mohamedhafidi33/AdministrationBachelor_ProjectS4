@@ -17,4 +17,14 @@ List<Professeur> listProfs();
 void modifierProf(Professeur prof);
 
 void supprimerProf(Professeur prof);
+
+void addEnseignement(int idProf, int idMatiere);
+
+int getIdProf(String nom, String prenom);
+
+void deleteEnseignement(int profId);
+
+int countProfs();
+
+List<Professeur> listProfsBySemestre(int semestreId);
 }

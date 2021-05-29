@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,7 +86,7 @@
 					<div class="col-md-2 col-sm-4  tile_stats_count">
 						<span class="count_top"><i class="fa fa-user"></i> Total
 							teachers </span>
-						<div class="count">30</div>
+						<div class="count"> <c:out value="${countProfs }"></c:out> </div>
 						<span class="count_bottom"><i class="green"><i
 								class="fa fa-sort-asc"></i> 1% </i> From last 2 years </span>
 					</div>

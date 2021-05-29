@@ -170,16 +170,33 @@ if (session.getAttribute("admin") == null) {
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="control-label col-md-3 col-sm-3 ">Module</label>
+											<label class="col-md-3 col-sm-3  control-label">Checkboxes
+												and radios <br> <small class="text-navy">Normal
+													Bootstrap elements</small>
+											</label>
+
 											<div class="col-md-9 col-sm-9 ">
-												<select class="form-control" name="ville">
 												<c:forEach items="${listMatiere}" var="matiere">
-													<option><c:out value="${matiere.nom }"></c:out> </option>
-													</c:forEach>
-												</select>
+													<div class="checkbox">
+														<label> <input name="matiereList" type="checkbox"
+															class="flat" checked="0" value="${matiere.id }">
+															<c:out value="${matiere.nom }"></c:out>
+														</label>
+													</div>
+												</c:forEach>
 											</div>
 										</div>
-
+										<div class="field item form-group">
+											<label class="col-form-label col-md-3 col-sm-3  label-align">Ajouter
+												fichier Excel<span class="required"></span>
+											</label>
+											<div class="btn-group">
+												<a class="btn" title="Insert picture (or just drag & drop)"
+													id="pictureBtn"><i class="fa fa-picture-o"></i></a> <input
+													type="file" data-role="magic-overlay" name="excelList"
+													data-target="#pictureBtn" data-edit="insertImage" />
+											</div>
+										</div>
 										<div class="ln_solid">
 											<div class="form-group">
 												<div class="col-md-6 offset-md-3">
@@ -208,8 +225,6 @@ if (session.getAttribute("admin") == null) {
 			<!-- /footer content -->
 		</div>
 	</div>
-
-
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="../vendors/validator/multifield.js"></script>
@@ -217,17 +232,16 @@ if (session.getAttribute("admin") == null) {
 
 	<!-- Javascript functions	-->
 	<script>
-		function hideshow(){
+		function hideshow() {
 			var password = document.getElementById("password1");
 			var slash = document.getElementById("slash");
 			var eye = document.getElementById("eye");
-			
-			if(password.type === 'password'){
+
+			if (password.type === 'password') {
 				password.type = "text";
 				slash.style.display = "block";
 				eye.style.display = "none";
-			}
-			else{
+			} else {
 				password.type = "password";
 				slash.style.display = "none";
 				eye.style.display = "block";
@@ -237,30 +251,28 @@ if (session.getAttribute("admin") == null) {
 	</script>
 
 	<script>
-        // initialize a validator instance from the "FormValidator" constructor.
-        // A "<form>" element is optionally passed as an argument, but is not a must
-        var validator = new FormValidator({
-            "events": ['blur', 'input', 'change']
-        }, document.forms[0]);
-        // on form "submit" event
-        document.forms[0].onsubmit = function(e) {
-            var submit = true,
-                validatorResult = validator.checkAll(this);
-            console.log(validatorResult);
-            return !!validatorResult.valid;
-        };
-        // on form "reset" event
-        document.forms[0].onreset = function(e) {
-            validator.reset();
-        };
-        // stuff related ONLY for this demo page:
-        $('.toggleValidationTooltips').change(function() {
-            validator.settings.alerts = !this.checked;
-            if (this.checked)
-                $('form .alert').remove();
-        }).prop('checked', false);
-
-    </script>
+		// initialize a validator instance from the "FormValidator" constructor.
+		// A "<form>" element is optionally passed as an argument, but is not a must
+		var validator = new FormValidator({
+			"events" : [ 'blur', 'input', 'change' ]
+		}, document.forms[0]);
+		// on form "submit" event
+		document.forms[0].onsubmit = function(e) {
+			var submit = true, validatorResult = validator.checkAll(this);
+			console.log(validatorResult);
+			return !!validatorResult.valid;
+		};
+		// on form "reset" event
+		document.forms[0].onreset = function(e) {
+			validator.reset();
+		};
+		// stuff related ONLY for this demo page:
+		$('.toggleValidationTooltips').change(function() {
+			validator.settings.alerts = !this.checked;
+			if (this.checked)
+				$('form .alert').remove();
+		}).prop('checked', false);
+	</script>
 
 	<!-- jQuery -->
 	<script src="vendors/jquery/dist/jquery.min.js"></script>
