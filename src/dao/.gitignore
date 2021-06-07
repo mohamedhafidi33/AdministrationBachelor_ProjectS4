@@ -13,3 +13,9 @@
 /Testdao.class
 /IFiliereImplDAO.class
 /IDocumentImplDAO.class
+/IAnneeUniversitaireDAO.class
+/IAnneeUniversitaireImplDAO.class
+/ISemestreDAO.class
+/ISemestreImplDAO.class
+/IEmploiDAO.class
+/IEmploiImplDAO.class

@@ -11,14 +11,15 @@ public class IDocumentImplDAO implements IDocumentDAO{
 	Connection conn=SingletonConnection.getConnection();
 	
 	public int uploadDocument(InputStream file) {
+		
 		int row=0;
+		
 		Etudiant etudiant = new Etudiant();
 		Document doc = new Document();
 	try {
 		Connection conn=SingletonConnection.getConnection();
 		PreparedStatement ps= conn.prepareStatement("INSERT INTO document (file) VALUES (?)");
 		
-
 		//ps.setString(1, doc.getType().toString());
 		
 		if(file != null) {
@@ -33,7 +34,7 @@ public class IDocumentImplDAO implements IDocumentDAO{
 		 
 	}
 	return row;
-}
+  }
 }
 
 
