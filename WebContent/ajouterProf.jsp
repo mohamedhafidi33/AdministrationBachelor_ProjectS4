@@ -158,12 +158,12 @@ if (session.getAttribute("admin") == null) {
 													<label class="btn btn-secondary"
 														data-toggle-class="btn-primary"
 														data-toggle-passive-class="btn-default"> <input
-														type="radio" name="gender" value="male" class="join-btn">
+													required="required"	type="radio" name="gender" value="male" class="join-btn">
 														Male
 													</label> <label class="btn btn-primary"
 														data-toggle-class="btn-primary"
 														data-toggle-passive-class="btn-default"> <input
-														type="radio" name="gender" value="female" class="join-btn">
+													required="required"	type="radio" name="gender" value="female" class="join-btn">
 														Female
 													</label>
 												</div>

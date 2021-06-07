@@ -34,7 +34,7 @@ public class IEtudiantImplDAO implements IEtudiantDAO{
 		try {
 			PreparedStatement ps = conexion.prepareStatement(
 					"select * from etudiant where User_id=? ");
-			ps.setInt(1, user.getId()+1);
+			ps.setInt(1, user.getId());
 			System.out.print("votre id "+user.getId());
 			 ResultSet rs = ps.executeQuery();
 				if(rs.next()){

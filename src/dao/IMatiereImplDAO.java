@@ -84,4 +84,30 @@ ArrayList<Matiere> matieres = new ArrayList<Matiere>();
 		}
 		return m;
 	}
+
+	@Override
+	public List<Matiere> ListMatiereByEtudiant(int idetu) {
+		// TODO Auto-generated method stub
+ArrayList<Matiere> matieres = new ArrayList<Matiere>();
+		
+		Connection connexion = DAOFACTORY.getConnection();
+		try {
+			PreparedStatement ps=connexion.prepareStatement("select ma.* from matiere ma, module mo,Semestre s,Filiere f,etudiant e where ma.module_id=mo.id and mo.semestre_id=s.id and s.filiere_id=f.id and f.id=e.filiere_id and e.id=? ; ;");
+			ps.setInt(1, idetu);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Matiere matiere=new Matiere();
+				matiere.setId(Integer.parseInt(rs.getString("id")));
+				matiere.setNom(rs.getString("nomMatiere"));
+				//matiere.setModule(rs.getInt("numero"));
+				matieres.add(matiere);
+			}
+			ps.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error");
+		}
+		return matieres;
+	
+	}
 }

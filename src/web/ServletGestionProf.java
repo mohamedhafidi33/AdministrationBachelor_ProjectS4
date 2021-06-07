@@ -21,6 +21,9 @@ import dao.IProfesseurDAO;
 import dao.IProfesseurImplDAO;
 import dao.ISemestreDAO;
 import dao.ISemestreImplDAO;
+import dao.IUserDAO;
+import dao.SendEmail;
+import dao.UserTest;
 
 /**
  * Servlet implementation class ServletGestionProf
@@ -34,6 +37,8 @@ public class ServletGestionProf extends HttpServlet {
 	IMatiereDAO imatiere = new IMatiereImplDAO();
 	ISemestreDAO isem = new ISemestreImplDAO();
 	ExcelGenerator excelG=new ExcelGenerator();
+	IUserDAO iuser=new UserTest();
+	SendEmail snd=new SendEmail();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -74,7 +79,7 @@ public class ServletGestionProf extends HttpServlet {
 				//excelG.excelData(request.getParameter("excelList"));
 				 for (Entry<Integer, List<String>> me : excelG.excelData(request.getParameter("excelList")).entrySet()) {
 			            Professeur prof=new Professeur();
-			            String[] matiereList = null;
+			            String[] matiereList = new String[10];
 			            Integer key = me.getKey();
 			            List<String> values = me.getValue();
 			            
@@ -92,19 +97,19 @@ public class ServletGestionProf extends HttpServlet {
 			            	prof.setVille(values.get(5));
 			            	prof.setProvince(values.get(6));
 			            	prof.setSexe(Gender.valueOf(values.get(7)));
-//			            	e=9;
-//			            	for(int j=0;j<matiereList.length;j++) {
-//			            	matiereList[j]=values.get(e);}
-			               // System.out.printf("%s ", values.get(e));
-			              //  }
+			            	
+			            	for(int j=8;j<values.size();j++) {
+			            	matiereList[j]=values.get(j);}
+			            //    System.out.printf("%s ", values.get(e));
+			               // }
 			            	 iprof.ajouterProf(prof);
+			     			snd.sendMail(prof.getEmail(),iuser.getUserById(iprof.getProfById(iprof.getIdProf(prof.getNom(), prof.getPrenom())).getUser().getId()).getUsername() ,iuser.getUserById(iprof.getProfById(iprof.getIdProf(prof.getNom(), prof.getPrenom())).getUser().getId()).getPassword());
+			            for(int i=0 ;i<matiereList.length;i++){
+							System.out.print("t*иииииииииии"+matiereList[i]);
+						iprof.addEnseignement(iprof.getIdProf(prof.getNom(), prof.getPrenom()),imatiere.getMatiereByName((matiereList[i])).getId());
+						}
 			            }
-			           
-//			            for(int i=0 ;i<matiereList.length;i++){
-//							System.out.print("t*иииииииииии"+matiereList[i]);
-//						iprof.addEnseignement(iprof.getIdProf(prof.getNom(), prof.getPrenom()),Integer.parseInt(matiereList[i]));
-//						}
-			            System.out.println();
+			           System.out.println();
 			        }
 			} else {
 			prof.setNom(request.getParameter("nom"));
@@ -117,6 +122,7 @@ public class ServletGestionProf extends HttpServlet {
 			String[] matiereList=request.getParameterValues("matiereList");
 			prof.setSexe(Gender.valueOf(request.getParameter("gender")));
 			iprof.ajouterProf(prof);
+			snd.sendMail(prof.getEmail(),iuser.getUserById(iprof.getProfById(iprof.getIdProf(prof.getNom(), prof.getPrenom())).getUser().getId()).getUsername() ,iuser.getUserById(iprof.getProfById(iprof.getIdProf(prof.getNom(), prof.getPrenom())).getUser().getId()).getPassword());
 			for(int i=0 ;i<matiereList.length;i++){
 				System.out.print("t*иииииииииии"+matiereList[i]);
 			iprof.addEnseignement(iprof.getIdProf(prof.getNom(), prof.getPrenom()),Integer.parseInt(matiereList[i]));

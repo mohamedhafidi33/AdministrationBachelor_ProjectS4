@@ -28,8 +28,8 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Gestion des absences  <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.html"> BGI </a> </li>
-                      <li><a href="index2.html">BGB </a></li>
+                      <li><a href="AjouterAbsence">Ajouter absences</a> </li>
+                      <li><a href="afficheAbsence">Liste des absences</a></li>
                       <li><a href="index3.html"> BCA </a ></li>
 
                     </ul>

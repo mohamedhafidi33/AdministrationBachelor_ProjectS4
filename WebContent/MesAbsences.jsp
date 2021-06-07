@@ -36,13 +36,8 @@
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-      <c:if test="${prof }">
-       <%@include file="headerProf.jsp"%>
-      </c:if>
-      
-  <c:if test="${admin }">
-     <%@include file="headerAdmin.jsp"%>
-</c:if>
+       <%@include file="headerStudent.jsp"%>
+   
         <!-- /top navigation -->
 
         <!-- page content -->
@@ -54,7 +49,7 @@
               </div>
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <form method="post" action="absenceData" >
+                  <form method="post" action="MatiereAbsence" >
 							<div class="col-md-9 col-sm-9 ">
 												<select class="form-control" name="matiere">
 												<c:forEach items="${listMatiere }" var="matiere">
@@ -62,27 +57,8 @@
 												</c:forEach>
 												</select>
 											</div>
-											<td>  <a> 
-                           
-							<input id="birthday" name="date" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)">
-								<script>
-									function timeFunctionLong(input) {
-											setTimeout(function() {
-												input.type = 'text';
-												}, 60000);
-											}
-									</script>
 											
-                              </a> </td>
-                              <div class="col-md-9 col-sm-9 ">
-												<select class="form-control" name="creneau">
-												<option>C1</option>
-												<option>C2</option>
-												<option>C3</option>
-													<option>C4</option>
-												</select>
-											</div>
-									<button class="btn btn-secondary" type="submit">Go!</button>
+									<button class="btn btn-secondary" type="submit">Chercher!</button>
 								</form>
                 </div>
               </div> 
@@ -116,22 +92,14 @@
                     <p class="text-muted font-13 m-b-30">
                       The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
                     </p>
-                    <form class="" action="addAbsence" method="post" novalidate>
+                   
                     <table id="datatable-buttons" class="table table-striped table-bordered" style="width:100%">
                       
                       <thead>
 										<tr>
-							 				<th><input type="checkbox" id="check-all" ></th>
-						  			
 											<th style="width: 1%">Id</th>
-											<th style="width: 20%">Nom</th>
-											
-											<th style="width: 20%">Prenom</th>
-											<th style="width: 20%">CIN</th>
-											<th style="width: 20%">CNE</th>
-											<th style="width: 20%">Email</th>
-											<th style="width: 20%">Ville</th>
-											<th style="width: 20%">Sexe</th>
+											<th style="width: 20%">Creneau</th>
+											<th style="width: 20%">Date</th>
 											
 										</tr>
 
@@ -139,37 +107,24 @@
 
 									<tbody>
 										
-											<c:forEach items="${etudiants}" var="etudiant">
+											<c:forEach items="${mesAbsences }" var="absence">
 
 												<tr>
-													<td>
-													 <input name="listEtudiant" value="${etudiant.id }" type="checkbox" id="check-all" >
-						  							</td>
-													<td>${etudiant.id}<input type="hidden" name="id"
-														value=${etudiant.id } />
+													
+													<td>${absence.id}<input type="hidden" name="id"
+														value=${absence.id } />
 													</td>
-													<td><a> ${etudiant.nom } <input type="hidden"
-															name="numero" value=${etudiant.nom } />
+													<td><a> ${absence.creneau } <input type="hidden"
+															name="numero" value=${absence.creneau } />
 													</a> </td>
 													
-													<td><a> ${etudiant.prenom } <input type="hidden"
-															name="description" value=${etudiant.prenom } />
+													<td><a> ${absence.date } <input type="hidden"
+															name="description" value=${absence.date } />
 													</a></td>
-													<td><a> ${etudiant.cin } <input type="hidden"
-													name="typesalle" value=${etudiant.cin } />
-													</a> </td>
-													<td><a> ${etudiant.cne } <input type="hidden"
-													name="typesalle" value=${etudiant.cne } />
-													</a> </td>
-													<td><a> ${etudiant.email } <input type="hidden"
-													name="typesalle" value=${etudiant.email } />
-													</a> </td>
-													<td><a> ${etudiant.ville } <input type="hidden"
-													name="typesalle" value=${etudiant.ville } />
-													</a> </td>
-													<td><a> ${etudiant.sexe } <input type="hidden"
-													name="typesalle" value=${etudiant.sexe } />
-													</a> </td>
+<%-- 													<td><a> ${etudiant.cin } <input type="hidden" --%>
+<%-- 													name="typesalle" value=${etudiant.cin } /> --%>
+<!-- 													</a> </td> -->
+													
 													
                       </c:forEach>
                      
@@ -177,9 +132,9 @@
                      	
                     </table>
                     <div class="x_content">
-                  <button type="submit" class="btn btn-round btn-success">Ajouter Absence</button>
+                  
                 </div>
-                     </form>
+                    
                   </div>
                   
                 </div>

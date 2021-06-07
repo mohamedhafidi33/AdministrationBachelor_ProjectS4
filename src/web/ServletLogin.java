@@ -91,7 +91,9 @@ public class ServletLogin extends HttpServlet {
 
 				} else if (user.getRole().name().equals("etudiant")) {
 					session.setAttribute("etudiant", ietud.getEtudiant(user));
-					request.getRequestDispatcher("/HomeEtudiant").forward(request, response);
+					session.setAttribute("etudiant_nom", ietud.getEtudiant(user).getNom());
+					session.setAttribute("etudiant_id", ietud.getEtudiant(user).getId());
+					request.getRequestDispatcher("/HomeEtudiant.jsp").forward(request, response);
 
 				} else if (user.getRole().name().equals("professeur")) {
 					session.setAttribute("professeur", iprof.getProf(user));

@@ -1,6 +1,8 @@
 package dao;
 
 import java.io.IOException;
+import javax.mail.*;
+import javax.mail.internet.*;
 import java.sql.Connection;
 import java.sql.Date;
 import java.text.ParseException;
@@ -45,15 +47,40 @@ public class test {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-//		IProfesseurImplDAO iprof=new IProfesseurImplDAO();
+		IProfesseurImplDAO iprof=new IProfesseurImplDAO();
 		//u.supprimerUser(user);
 		//iprof.supprimerProf(prof);
 		//System.out.println("user is not nulllllll"+iprof.listProfsBySemestre(1));
 		IEtudiantImplDAO itud=new IEtudiantImplDAO();
-//		System.out.println(itud.listEtudiantByMatiere(1).get(0).getNom());
-		IFiliereImplDAO f=new IFiliereImplDAO();
+		
+//		IFiliereImplDAO f=new IFiliereImplDAO();
 		IMatiereImplDAO imat=new IMatiereImplDAO();
-		//System.out.println(f.getFiliereByName("BGI").getId());
-		System.out.println(itud.listEtudiantByMatiere(imat.getMatiereByName("Java1").getId()).get(1).getNom());
+		IAbsenceDAO iabs=new IAbsenceImplDAO();
+//		System.out.println(f.getFiliereByName("BGI").getId());
+//		for(int i=0;i<5;i++) {
+//		System.out.println(iabs.listAbsenceByMatiere(1).get(i).getCreneau());}
+		// Set up the SMTP server.
+//		java.util.Properties props = new java.util.Properties();
+//		props.put("mail.smtp.host", "smtp.myisp.com");
+//		Session session = Session.getDefaultInstance(props, null);
+//
+//		// Construct the message
+//		String to = "you@you.com";
+//		String from = "me@me.com";
+//		String subject = "Hello";
+//		Message msg = new MimeMessage(session);
+//		try {
+//		    msg.setFrom(new InternetAddress(from));
+//		    msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+//		    msg.setSubject(subject);
+//		    msg.setText("Hi,\n\nHow are you?");
+//
+//		    // Send the message.
+//		    Transport.send(msg);
+//		} catch (MessagingException e) {
+//		    // Error.
+//		}
+		//System.out.println(imat.getMatiereByName("Java1").getId());
+		System.out.println(itud.listEtudiantByMatiere(7).get(0).getPrenom());
 	}
 }

@@ -11,4 +11,6 @@ public interface IMatiereDAO {
 	List<Matiere> ListMatiereByProf(int idprof);
 
 	Matiere getMatiereByName(String name);
+	
+	List<Matiere> ListMatiereByEtudiant(int idetu);
 }
