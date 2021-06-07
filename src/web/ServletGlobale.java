@@ -52,7 +52,7 @@ public class ServletGlobale extends HttpServlet {
 	Filiere filiere = new Filiere();
 	IFiliereImplDAO filiereDao = new IFiliereImplDAO();
 	ISemestreImplDAO semestreDao = new ISemestreImplDAO();
-	IEmploiImplDAO emploiDao = new IEmploiImplDAO();
+	//IEmploiImplDAO emploiDao = new IEmploiImplDAO();
 
 	private static final long serialVersionUID = 1L;
 
@@ -72,13 +72,13 @@ public class ServletGlobale extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		/*
-		 * response.getWriter().append("Served at: ").append(request.getContextPath());
-		 * //request.getRequestDispatcher("/addStudent.jsp").forward(request, response);
-		 * if (request.getServletPath().equals("/ajouterEmploi")) {
-		 * request.setAttribute("annees",iAnne.listAnnees());
-		 * request.getRequestDispatcher("/addStudent.jsp").forward(request, response); }
-		 */
+		
+		  response.getWriter().append("Served at: ").append(request.getContextPath());
+		 //request.getRequestDispatcher("/addStudent.jsp").forward(request, response);
+		 if (request.getServletPath().equals("/ajouterEtudiant")) {
+		 request.setAttribute("annees",iAnne.listAnnees());
+		 request.getRequestDispatcher("/addStudent.jsp").forward(request, response); }
+		 
 		doPost(request, response);
 	}
 
@@ -337,8 +337,8 @@ public class ServletGlobale extends HttpServlet {
 				inputStream = filePart.getInputStream();
 				System.out.println("semester id : " + semestreDao.searchByNom(semestre));
 
-				emploiDao.addIdsSchedule(nomEmploi, Session.valueOf(session1),
-						iAnne.selectByDateDebut(dateeDebut, dateeFin), semestreDao.searchByNom(semestre), inputStream);
+				//emploiDao.addIdsSchedule(nomEmploi, Session.valueOf(session1),
+						//iAnne.selectByDateDebut(dateeDebut, dateeFin), semestreDao.searchByNom(semestre), inputStream);
 
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListEtudiant.jsp");
 				dispatcher.forward(request, response);
@@ -354,7 +354,7 @@ public class ServletGlobale extends HttpServlet {
 
 		}
 
-		else if (request.getServletPath().equals("/afficherEmploi")) {
+		/*else if (request.getServletPath().equals("/afficherEmploi")) {
 
 			List<Schedule> emplois = emploiDao.listEmplois();
 			/*HashMap<Schedule, String> emploiBinary = new HashMap<Schedule, String>();
@@ -367,12 +367,12 @@ public class ServletGlobale extends HttpServlet {
 				}
 			});*/
 
-			request.setAttribute("emplois", emplois);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/ListEmploi.jsp");
-			dispatcher.forward(request, response);
+			/*request.setAttribute("emplois", emplois);*/
+			/*RequestDispatcher dispatcher = request.getRequestDispatcher("/ListEmploi.jsp");
+			dispatcher.forward(request, response);*/
 
 		}
 
 	}
-}
+
 
