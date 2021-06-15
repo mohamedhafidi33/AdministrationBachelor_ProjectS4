@@ -6,15 +6,13 @@ import java.util.ArrayList;
 
 
 
+
 import java.util.List;
 
 
 
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Year;
@@ -36,7 +34,6 @@ public class IEtudiantImplDAO implements IEtudiantDAO{
 			IAnneeUniversitaireImplDAO anneeDao = new IAnneeUniversitaireImplDAO();
 			
 			
-		
 public void saveEtudiant(Etudiant etudiant) {
 		try {
 			
@@ -134,7 +131,19 @@ public List<Etudiant> listEtudiants() {
 				etudiant1.setId(rs.getInt("id"));
 				etudiant1.setNom(rs.getString("nom"));
 				etudiant1.setPrenom(rs.getString("prenom"));
+				etudiant1.setCne(rs.getString("cne"));
 				etudiant1.setCin(rs.getString("cin"));
+				etudiant1.setEmail(rs.getString("email"));
+				etudiant1.setDateNaissance(Date.valueOf(rs.getString("dateNaissance")));
+				etudiant1.setDateInscription(Date.valueOf(rs.getString("dateInscription")));
+				etudiant1.setEtablissement(rs.getString("etablissement"));
+				etudiant1.setLieuBac(rs.getString("lieuBac"));
+				etudiant1.setLycee(rs.getString("lycee"));
+				etudiant1.setNationalite(rs.getString("nationalite"));
+				etudiant1.setProvince(rs.getString("province"));
+				etudiant1.setLieuNaissance(rs.getString("lieuNaissance"));
+				etudiant1.setVille(rs.getString("ville"));
+				etudiant1.setMention(rs.getString("mention"));
 				System.out.println("valide");
 			}
 		}
@@ -166,10 +175,10 @@ public List<Etudiant> listEtudiants() {
 		}
 		return etudiant1.getId();
 	}
-
+	
 	@Override
 	public Etudiant updateEtudiant(Etudiant etudiant) { 
-		// TODO Auto-generated method stub
+	
 		try{
 			PreparedStatement ps= conn.prepareStatement("UPDATE etudiant SET id = ? ,nom= ? ,prenom=? ,cin=?,cne=?,email=?,etablissement= ?,lieuNaissance = ?,lycee=?,mention=?,province= ?,ville=?, nationalite=? WHERE id=?");
 			
@@ -346,6 +355,7 @@ catch (SQLException e) {
 		
 		return etudiants;
 	}
+	
 		
 	}
 		

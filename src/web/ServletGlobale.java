@@ -1,14 +1,18 @@
 package web;
 
 import java.io.BufferedInputStream;
-import java.io.File;
+import beans.*;
+import java.io.BufferedReader;
 import java.io.IOException;
-
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.io.InputStreamReader;
+import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,29 +20,33 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import org.apache.tomcat.util.codec.binary.Base64;
-
-import java.text.ParseException;
-
-import java.sql.Date;
-import java.util.HashMap;
-import java.util.List;
-
-import javax.servlet.annotation.MultipartConfig;
-
-import java.text.SimpleDateFormat;
-
-import beans.*;
-import dao.*;
+import beans.AnneeUniversitaire;
+import beans.Doctype;
+import beans.Document;
+import beans.Etudiant;
+import beans.Filiere;
+import beans.Gender;
+import beans.Schedule;
+import beans.Session;
+import dao.IAnneeUniversitaireImplDAO;
+import dao.IDocumentDAO;
+import dao.IDocumentImplDAO;
+import dao.IEmploiImplDAO;
+import dao.IEtudiantDAO;
+import dao.IEtudiantImplDAO;
+import dao.IFiliereImplDAO;
+import dao.ISemestreImplDAO;
 
 /**
  * Servlet implementation class ServletEtudiant
  */
 
-@WebServlet(urlPatterns = { "/ajouterEtudiant", "/addStudent", "/afficherEtudiant", "/ListEtudiant",
-		"/supprimerEtudiant", "/editEtudiant", "/selectData", "/ajouterEmploi", "/addEmploi", "/tableEtudiant",
-		"/afficherEmploi" })
-@MultipartConfig(maxFileSize = 16177215)
+@WebServlet(urlPatterns = { "/ajouterEtudiant", "/afficherEtudiant", "/ListEtudiant",
+		"/supprimerEtudiant","/modifierEtudiant", "/editEtudiant", "/selectData", "/ajouterEmploi", "/addEmploi", "/tableEtudiant",
+		"/afficherEmploi","/downloadPdf" ,"/supprimerEmploi","/modifierEmploi","/modifierEmploiSubmit"})
+@MultipartConfig(maxRequestSize=1024*1024*5*5)
+
+
 public class ServletGlobale extends HttpServlet {
 
 	Etudiant etudiant = new Etudiant();
@@ -52,7 +60,9 @@ public class ServletGlobale extends HttpServlet {
 	Filiere filiere = new Filiere();
 	IFiliereImplDAO filiereDao = new IFiliereImplDAO();
 	ISemestreImplDAO semestreDao = new ISemestreImplDAO();
-	//IEmploiImplDAO emploiDao = new IEmploiImplDAO();
+	IEmploiImplDAO emploiDao = new IEmploiImplDAO();
+	Semestre semestre = new Semestre();
+	//private StarDocs stardocs =null;
 
 	private static final long serialVersionUID = 1L;
 
@@ -73,11 +83,12 @@ public class ServletGlobale extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		
-		  response.getWriter().append("Served at: ").append(request.getContextPath());
 		 //request.getRequestDispatcher("/addStudent.jsp").forward(request, response);
 		 if (request.getServletPath().equals("/ajouterEtudiant")) {
 		 request.setAttribute("annees",iAnne.listAnnees());
 		 request.getRequestDispatcher("/addStudent.jsp").forward(request, response); }
+		 
+
 		 
 		doPost(request, response);
 	}
@@ -87,21 +98,6 @@ public class ServletGlobale extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-
-	/*public String encodeAll(Schedule emploi) throws IOException {
-
-		if (emploi.getEmploiFile() != null) {
-			BufferedInputStream bf = new BufferedInputStream(emploi.getEmploiFile());
-
-			byte[] emploiFile = bf.readAllBytes();
-			byte[] encodeBase64Photo = Base64.encodeBase64(emploiFile);
-			String base64Encoded = new String(encodeBase64Photo, "UTF-8");
-			return base64Encoded;
-		}
-		return null;
-
-	}*/
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -192,7 +188,6 @@ public class ServletGlobale extends HttpServlet {
 
 			etudiantDao.selectByNomFil(nomFiliere);
 
-			// etudiantDao.addFiliereId(etudiantDao.selectByNomFil(nomFiliere));
 
 			etudiantDao.saveEtudiant(etudiant);
 			filiereDao.selectByNomFil(nomFiliere);
@@ -202,16 +197,6 @@ public class ServletGlobale extends HttpServlet {
 			Date dateFin1 = Date.valueOf(dateFin);
 			annee.setDate_fin(dateFin1);
 
-			// filiereDao.saveFiliere(nomFiliere);
-
-			/**
-			 * semestreDao.addFiliereId(nomSemestre,etudiantDao.selectByNomFil(nomFiliere));
-			 */
-
-			/*
-			 * semestreDao.searchByNom(nomSemestre);
-			 * semestreDao.addFiliereId(filiereDao.selectByNomFil(nomFiliere));
-			 */
 			semestreDao.saveSemestre(nomSemestre, filiereDao.selectByNomFil(nomFiliere));
 
 			System.out.println("this is the id of the filiere : " + semestreDao.searchByNom(nomSemestre));
@@ -226,7 +211,7 @@ public class ServletGlobale extends HttpServlet {
 
 			System.out.println("hnnaaaaa");
 			response.sendRedirect("/AdministrationBachelor_ProjectS4/afficherEtudiant");
-
+			
 		}
 
 		else if (request.getServletPath().equals("/afficherEtudiant")) {
@@ -242,7 +227,17 @@ public class ServletGlobale extends HttpServlet {
 			etudiantDao.deleteEtudiant(id);
 			response.sendRedirect("/AdministrationBachelor_ProjectS4/afficherEtudiant");
 
-		} else if (request.getServletPath().equals("/editEtudiant")) {
+		} 
+		else if (request.getServletPath().equals("/modifierEtudiant")) {
+			int id = Integer.parseInt(request.getParameter("id").trim());
+			Etudiant etudiant  = etudiantDao.getEtudiant(id);
+			request.setAttribute("etudiant",etudiant);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/modifierEtudiant.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		
+		else if (request.getServletPath().equals("/editEtudiant")) {
 
 			int id = Integer.parseInt(request.getParameter("id"));
 			String nom = request.getParameter("nom");
@@ -257,12 +252,12 @@ public class ServletGlobale extends HttpServlet {
 			String province = request.getParameter("province");
 			String lieuNaissance = request.getParameter("lieuNaissance");
 			String ville = request.getParameter("ville");
-			String nomFiliere = request.getParameter("filiere");
+		
 			String mention = request.getParameter("mention");
 
 			Etudiant etudiant = new Etudiant();
-			etudiant.setId(etudiant.getId());
-			System.out.println("this is the student ID : " + etudiant.getId());
+			etudiant.setId(id);
+			
 			etudiant.setNom(nom);
 			etudiant.setPrenom(prenom);
 			etudiant.setCne(cne);
@@ -273,6 +268,8 @@ public class ServletGlobale extends HttpServlet {
 			etudiant.setNationalite(nationalite);
 			etudiant.setProvince(province);
 			etudiant.setVille(ville);
+			etudiant.setMention(mention);
+			etudiant.setEtablissement(etablissement);
 
 			etudiantDao.updateEtudiant(etudiant);
 			response.sendRedirect("/AdministrationBachelor_ProjectS4/afficherEtudiant");
@@ -310,18 +307,28 @@ public class ServletGlobale extends HttpServlet {
 		}
 
 		else if (request.getServletPath().equals("/addEmploi")) {
-
-			String semestre = request.getParameter("nomSemestre");
+			Part partsemestre = request.getPart("nomSemestre");
+			String semestre = getValeur(partsemestre);
 
 			System.out.println("hada nom f servlet " + semestre);
-			String session1 = request.getParameter("session");
+			Part partsession = request.getPart("session");
+			String session2   =getValeur(partsession);
+			
+			Part dateDebutParte = request.getPart("dateDebut");			
+			String dateDebut1 = getValeur(dateDebutParte);
+			
+			Part dateFin1Parte = request.getPart("dateFin");	
+			String dateFin1 = getValeur(dateFin1Parte);
+			System.out.println("Date est : "+dateFin1);
+			
+			Part nomEmploiPart = request.getPart("nomEmploi");
+			String nomEmploi = getValeur(nomEmploiPart);
 
-			String dateDebut1 = request.getParameter("dateDebut");
-			String dateFin1 = request.getParameter("dateFin");
-
+			
 			Date dateeDebut = Date.valueOf(dateDebut1);
+			
+			
 			Date dateeFin = Date.valueOf(dateFin1);
-			String nomEmploi = request.getParameter("nomEmploi");
 
 			Part filePart = request.getPart("emploiFile");
 
@@ -337,11 +344,9 @@ public class ServletGlobale extends HttpServlet {
 				inputStream = filePart.getInputStream();
 				System.out.println("semester id : " + semestreDao.searchByNom(semestre));
 
-				//emploiDao.addIdsSchedule(nomEmploi, Session.valueOf(session1),
-						//iAnne.selectByDateDebut(dateeDebut, dateeFin), semestreDao.searchByNom(semestre), inputStream);
-
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/ListEtudiant.jsp");
-				dispatcher.forward(request, response);
+				emploiDao.addIdsSchedule(nomEmploi, Session.valueOf(session2),
+						iAnne.selectByDateDebut(dateeDebut, dateeFin), semestreDao.searchByNom(semestre), inputStream);
+				response.sendRedirect("/AdministrationBachelor_ProjectS4/afficherEmploi");
 
 			}
 		}
@@ -354,25 +359,72 @@ public class ServletGlobale extends HttpServlet {
 
 		}
 
-		/*else if (request.getServletPath().equals("/afficherEmploi")) {
+		else if (request.getServletPath().equals("/afficherEmploi")) {
 
 			List<Schedule> emplois = emploiDao.listEmplois();
-			/*HashMap<Schedule, String> emploiBinary = new HashMap<Schedule, String>();
+			request.setAttribute("emplois", emplois);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/ListEmploi.jsp");
+			dispatcher.forward(request, response);
 
-			emplois.stream().forEach(x -> {
-				try {
-					emploiBinary.put(x, encodeAll(x));
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-			});*/
+		} 
+		else 	if(request.getServletPath().equals("/downloadPdf")){
+			 System.out.println("dssdds");
+				int id = Integer.parseInt(request.getParameter("idPdf"));
+				Schedule schedule = emploiDao.selectById(id);
+				/**
+				 * make byte
+				 * */
+				BufferedInputStream bis = new BufferedInputStream(schedule.getEmploiFile());
+				byte tab[] = bis.readAllBytes();
+				bis.close();
+				response.setContentType("application/pdf");
+				ServletOutputStream out = response.getOutputStream();
+				out.write(tab);
+				out.close();
+		}
+		
+		else if (request.getServletPath().equals("/supprimerEmploi")) {
+			int id = Integer.parseInt(request.getParameter("id").trim());
+			emploiDao.deleteById(id);
+			response.sendRedirect("/AdministrationBachelor_ProjectS4/afficherEmploi");
 
-			/*request.setAttribute("emplois", emplois);*/
-			/*RequestDispatcher dispatcher = request.getRequestDispatcher("/ListEmploi.jsp");
-			dispatcher.forward(request, response);*/
-
+		}
+		else if (request.getServletPath().equals("/modifierEmploi")) {
+			int id = Integer.parseInt(request.getParameter("id").trim());
+			
+			System.out.println("emploi ID : "+id);
+			Schedule emploi  = emploiDao.selectById(id);
+			request.setAttribute("emploi", emploi);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/modifierEmploi.jsp");
+			dispatcher.forward(request, response);
+			
+		}
+		
+		else if (request.getServletPath().equals("/modifierEmploiSubmit")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			emploi.setId(id);
+			emploi.setNomEmploi(request.getParameter("nomEmploi"));
+			Part filePart = request.getPart("emploiFile");
+		    emploi.setEmploiFile(filePart.getInputStream());
+		    emploi.setSession(Session.valueOf(request.getParameter("session")));
+		    System.out.println("LA SESSION EST :"+Session.valueOf(request.getParameter("session")));
+			
+			emploiDao.updateEmploi(emploi); 
+			response.sendRedirect("/AdministrationBachelor_ProjectS4/afficherEmploi");
 		}
 
 	}
+	private String getValeur( Part part ) throws IOException {
+	    BufferedReader reader = new BufferedReader( new InputStreamReader( part.getInputStream(), "UTF-8" ) );
+	    StringBuilder valeur = new StringBuilder();
+	    char[] buffer = new char[1024];
+	    int longueur = 0;
+	    while ( ( longueur = reader.read( buffer ) ) > 0 ) {
+	        valeur.append( buffer, 0, longueur );
+	    }
+	    return valeur.toString();
+	}
+}
 
 

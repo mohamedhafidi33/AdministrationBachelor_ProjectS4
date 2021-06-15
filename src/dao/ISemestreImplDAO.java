@@ -46,6 +46,29 @@ try {
 		}
 		return semestre.getId();
 	}
-}
+	
+	public String findName(int id) {
+		Semestre semestre=  new Semestre();
+		try {
+			PreparedStatement ps = conn.prepareStatement("select * from semestre where id = ?");
+			ps.setInt(1,id);
+			ResultSet rs = ps.executeQuery();
+			
+			if  (rs.next()) {
+				
+				semestre.setNom(rs.getString("nomSemestre"));
+				
+				/*................*/
+				System.out.println("valide");
+			}
+		}
+		catch (SQLException e) {
+			 e.printStackTrace();
+		}
+		return semestre.getNom();
+			
+		}
+	}
+
 
 

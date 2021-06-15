@@ -270,20 +270,10 @@
             <div class="right_col" role="main">
                 <div class="">
                     <div class="page-title">
-                        <div class="title_left">
-                            <h3>Gestion des emplois du temps </h3>
-                        </div>
+                       
+                        
 
-                        <div class="title_right">
-                            <div class="col-md-5 col-sm-5 form-group pull-right top_search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search for...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">Go!</button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="clearfix"></div>
 
@@ -291,113 +281,132 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Formulaire  <small> Gestion des emplois </small></h2>
+                                    
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
+                                        
                                         <li><a class="close-link"><i class="fa fa-close"></i></a>
                                         </li>
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
+                                
                                 <div class="x_content">
-                                    <form enctype='multipart/form-data' action="addEmploi" method="post" >
-                                        <!--<p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a>
-                                        </p>-->
-                                        <span class="section"> Ajout d'un emploi  </span> 
+                                
+                                    <form action="modifierEtudiant" method="post" >
+                                        
+                                        <span class="section"> Informations de l'étudiant  </span>
                                         
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Nom de l'emploi <span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Id<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control"  data-validate-length-range="6" data-validate-words="2" name="nomEmploi"  required="required" />
+                                                <input class="form-control" value ='${etudiant.id}' disabled ="disabled"data-validate-length-range="6" data-validate-words="2" name="id" placeholder="Last name" required="required" />
                                             </div>
                                         </div>
                                         
-                                             <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align" > Semestre <span class="required"> *</span></label>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Nom<span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" value ='${etudiant.nom}'data-validate-length-range="6" data-validate-words="2" name="nom" placeholder="Last name" required="required" />
+                                            </div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Prènom <span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control"  value ='${etudiant.prenom}' data-validate-length-range="6" data-validate-words="2" name="prenom" placeholder="first name" required="required" />
+                                            </div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align " size= "10" >CNE  <span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6 ">
-                                                <select class="select2_single form-control" name="nomSemestre" tabindex="-1">
-                                                    <option> </option>
-                                                    <option >S1</option>
-                                                    <option >S2</option>
-                                                    <option >S3</option>
-                                                    <option >S4</option>
-                                                    <option >S5</option>
-                                                </select>
+                                                <input type="text" class="form-control"  value ='${etudiant.cne}' name="cne"placeholder="Ex: M124578451">
                                             </div>
-                                            </div>
-                                            
-                                            <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align" >Session <span class="required"> *</span></label>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align " size= "10" >CIN  <span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6 ">
-                                                <select class="select2_single form-control" name="session" tabindex="-1">
-                                                    <option> </option>
-                                                    <option >automne</option>
-                                                    <option >printemps</option>
-                                                 
-                                                </select>
+                                                <input type="text" class="form-control"  value ='${etudiant.cin}' name="cin" placeholder="Ex: D784512">
                                             </div>
-                                            </div>
-                                            
-                                            
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> email <span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control"  value ='${etudiant.email}' name="email" class='email' required="required" type="email" /></div>
+                                        </div>
+
                                            <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Date de début de l'année  <span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Date de naissance <span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control"  class='date' type="date" name="dateDebut" required='required'>
-                                           </div>
+                                                <input class="form-control"  value ='${etudiant.dateNaissance }'class='date' type="date" name="dateNaissance" required='required'></div>
                                         </div>
-                                        
                                           <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Date de fin de l'année  <span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Date d'inscription <span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" class='date1' type="date" name="dateFin" required='required'>
-                                                </div>
+                                                <input class="form-control" class='date1' value ='${etudiant.dateInscription}' type="date" name="dateInscription" required='required'></div>
                                         </div>
-  
-                                            
+                             
+                                       <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> établissement  <span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control"  class='optional'value ='${etudiant.etablissement }' name="etablissement" data-validate-length-range="5,15" type="text" /></div>
+                                        </div>
+                                  
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Joindre fichier :  <span class="required"> *</span></label>
-                                        <a class="btn" title="Insert picture (or just drag & drop)"></a>
-                                        <input type="file" id="IdFile"name="emploiFile "data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
-                                    </div>
-                                            
-                                            
-                                                                                                                                       
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Lieu de bac  <span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" class='optional'value ='${etudiant.lieuBac }'  name="lieuBac" data-validate-length-range="5,15" type="text" /></div>
+                                        </div>
                                         
-                                        <!--  <div class="ln_solid">-->
-                                            <div class="form-group">
-                                                <div class="col-md-6 offset-md-3">
-                                                
-                                                   <input type="submit" class="btn btn-primary" value="Confirmer l'ajout ">
-                                                   
-                                                    <!--<button type='reset' class="btn btn-success">Reset</button>
-                                                 
-                                                </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Lycée <span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control"  class='optional'value ='${etudiant.lycee}' name="lycee" data-validate-length-range="5,15" type="text" /></div>
+                                        </div>
+                                      
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align " size= "10" >Nationalité  </label>
+                                            <div class="col-md-6 col-sm-6 ">
+                                                <input type="text" class="form-control" value ='${etudiant.nationalite }' name="nationalite" placeholder="Marocain(e)">
                                             </div>
                                         </div>
-                                    </div>-->
-                               </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-    
-            <!-- /page content -->
-
-            <!-- footer content -->
-            <!--<footer>
-                <div class="pull-right">
-                    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-                </div>
-                <div class="clearfix"></div>
-            </footer>
-             /footer content
-        </div>
-    </div>-->
-
+                                         <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Province <span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" class='optional' value ='${etudiant.province }' name="province" data-validate-length-range="5,15" type="text" /></div>
+                                        </div>
+                                       
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Lieu de naissance <span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control"   class='optional' value ='${etudiant.lieuNaissance}' name="lieuNaissance" data-validate-length-range="5,15" type="text" /></div>
+                                        </div>
+                                        
+                                        
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align" > Ville </label>
+                                            <div class="col-md-6 col-sm-6 ">
+                                               <input class="form-control"   class='optional' value ='${etudiant.ville}' name="lieuNaissance" data-validate-length-range="5,15" type="text" /></div>
+                                            </div>
+                                         <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align" >Mention </label>
+                                            <div class="col-md-6 col-sm-6 ">
+                                                <input class="form-control"   class='optional' value ='${etudiant.mention}' name="lieuNaissance" data-validate-length-range="5,15" type="text" /></div>
+                                            </div>
+  
+                                        <div class="form-group">
+                                                <div class="col-md-6 offset-md-3">
+                                            <button class="btn btn-danger btn-xs" formaction="editEtudiant" formaction="post" >Sauvegardez les modifications</button>
+                                       </div>
+                                       </div>
+                                       </form>
+                                       </div>
+                                     
+                                       </div>
+                                       </div>
+            
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../vendors/validator/multifield.js"></script>

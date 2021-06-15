@@ -301,63 +301,44 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <form enctype='multipart/form-data' action="addEmploi" method="post" >
+                                    <form enctype='multipart/form-data' action="modifierEmploi" method="post" >
                                         <!--<p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a>
                                         </p>-->
-                                        <span class="section"> Ajout d'un emploi  </span> 
+                                        <span class="section"> Modification </span> 
+                                        
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Id :  <span class="required"></span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control"  disabled ="disabled" name="id" type ="text"  value='${emploi.id }'  />
+                                            </div>
+                                        </div>
                                         
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align"> Nom de l'emploi <span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control"  data-validate-length-range="6" data-validate-words="2" name="nomEmploi"  required="required" />
+                                                <input class="form-control"  name="nomEmploi" type ="text"  value='${emploi.nomEmploi }'  required="required" />
                                             </div>
                                         </div>
                                         
-                                             <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align" > Semestre <span class="required"> *</span></label>
-                                            <div class="col-md-6 col-sm-6 ">
-                                                <select class="select2_single form-control" name="nomSemestre" tabindex="-1">
-                                                    <option> </option>
-                                                    <option >S1</option>
-                                                    <option >S2</option>
-                                                    <option >S3</option>
-                                                    <option >S4</option>
-                                                    <option >S5</option>
-                                                </select>
-                                            </div>
-                                            </div>
-                                            
                                             <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align" >Session <span class="required"> *</span></label>
-                                            <div class="col-md-6 col-sm-6 ">
-                                                <select class="select2_single form-control" name="session" tabindex="-1">
-                                                    <option> </option>
-                                                    <option >automne</option>
-                                                    <option >printemps</option>
-                                                 
-                                                </select>
-                                            </div>
-                                            </div>
-                                            
-                                            
-                                           <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Date de début de l'année  <span class="required">*</span></label>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Session <span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control"  class='date' type="date" name="dateDebut" required='required'>
-                                           </div>
+                                                <input class="form-control"  name="session" type ="text"  value='${emploi.session }'  required="required" />
+                                            </div>
                                         </div>
                                         
-                                          <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Date de fin de l'année  <span class="required">*</span></label>
-                                            <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" class='date1' type="date" name="dateFin" required='required'>
-                                                </div>
-                                        </div>
+                                           
+                                            
+                                            
+                                        
+                                            
+                                            
+                                           
   
                                             
                                         <div class="field item form-group">
-                                            <label class="col-form-label col-md-3 col-sm-3  label-align"> Joindre fichier :  <span class="required"> *</span></label>
-                                        <a class="btn" title="Insert picture (or just drag & drop)"></a>
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align"   > Joindre fichier :  <span class="required"> *</span></label>
+                                        <a class="btn"  title="Insert picture (or just drag & drop)"></a>
                                         <input type="file" id="IdFile"name="emploiFile "data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
                                     </div>
                                             
@@ -368,14 +349,17 @@
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
                                                 
-                                                   <input type="submit" class="btn btn-primary" value="Confirmer l'ajout ">
+                                                <button class="btn btn-danger btn-xs" formmethod="post"
+															formaction="modifierEmploiSubmit" formenctype='multipart/form-data' >Sauvegardez les modifications</button>
+                                                
+                                                    <!-- <a type="submit" formaction = ""class="mt-2 btn btn-primary col-md-12" href="modifierEmploiSubmit?id=<c:out value='${emploi.id}' />">Modifier </a> &nbsp;&nbsp;&nbsp;-->
                                                    
                                                     <!--<button type='reset' class="btn btn-success">Reset</button>
                                                  
                                                 </div>
-                                            </div>
+                                            </div>-->
                                         </div>
-                                    </div>-->
+                                    </div>
                                </form>
                             </div>
                         </div>
@@ -400,8 +384,8 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="../vendors/validator/multifield.js"></script>
-    <script src="../vendors/validator/validator.js"></script>
+    <script src=".vendors/validator/multifield.js"></script>
+    <script src="vendors/validator/validator.js"></script>
     
     <!-- Javascript functions	-->
 	<script>

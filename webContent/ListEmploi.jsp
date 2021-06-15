@@ -331,6 +331,7 @@
                             <th>Nom emploi</th>
                             <th>Session</th>
                             <th>Fichier joint </th>
+                            <th> Modifier/Supprimer </th>
                            
                             
                           </tr>
@@ -339,14 +340,20 @@
                         <tbody>
                         
 							 <c:forEach items="${emplois}" var="emploi">
+							 
                           <tr>
                           
                             <td> ${emploi.id} </td> 
                             <td> ${emploi.nomEmploi} </td>
                             <td> ${emploi.session} </td>
-                            <!--  <td> <img src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUA
-    AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
-        9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" /> </td>-->
+                           
+        					<c:url value="/downloadPdf" var="downloadpdf">
+                                   <c:param name="idPdf">${emploi.id}</c:param>
+                            </c:url>
+                            <td><a href="${downloadpdf}">Download pdf</a></td>
+                           <td> 
+                            <a type="submit" class="btn btn-success" href="modifierEmploi?id=<c:out value='${emploi.id}' />"> <i class="fa fa-folder"></i>Modifier </a>
+                           <a href="supprimerEmploi?id= <c:out value='${emploi.id}'/>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"> </i> Supprimer </a> </td> 
                             
                              
                     <!-- /modal-->
