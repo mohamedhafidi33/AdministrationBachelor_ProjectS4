@@ -29,6 +29,6 @@ application intended for the administrative management of the Bachelor.
 <img width="922" alt="login" src="https://user-images.githubusercontent.com/72892818/124292113-24b8fd00-db4d-11eb-87a7-25ec97a45ae2.PNG">
 <img width="936" alt="reservation" src="https://user-images.githubusercontent.com/72892818/124292173-31d5ec00-db4d-11eb-9df9-c498cbcfd241.PNG">
 
-## 5.CONTRIBIOTORS:
+## 5.CONTRIBUTORS:
  ##### -HAFIDI Mohamed (https://github.com/mohamedhafidi33)
  ##### -MAHJOUBI Asmae (https://github.com/asmae1m)
