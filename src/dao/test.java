@@ -16,8 +16,9 @@ import beans.User;
 public class test {
 
 	public static void main(String[] args) {
+		IAnneeUniversitaireImplDAO iann=new IAnneeUniversitaireImplDAO();
 //		IReservationImplDAO ires=new IReservationImplDAO();
-//		UserTest u=new UserTest();
+		UserTest u=new UserTest();
 		// TODO Auto-generated method stub
 		//IUserImplDAO i = new IUserImplDAO();
 		//UserTest t=new UserTest();
@@ -81,6 +82,12 @@ public class test {
 //		    // Error.
 //		}
 		//System.out.println(imat.getMatiereByName("Java1").getId());
-		System.out.println(itud.listEtudiantByMatiere(7).get(0).getPrenom());
+//		for(int i=0;i<iann.listAnnees().size();i++) {
+//		System.out.println(iann.listAnnees().get(i).getDate_debut());
+//		System.out.println(iann.listAnnees().get(i).getDate_fin());
+//		}
+		
+		System.out.println(u.login("KRanya","KE186209423"));
+		
 	}
 }

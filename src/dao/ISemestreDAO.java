@@ -11,4 +11,7 @@ public interface ISemestreDAO {
 
 	int getIdSemestre(String nomSemestre);
 
+	void saveSemestre(String nomSemestre, int filiere_id );
+	public int searchByNom (String nomSemestre);
+
 }

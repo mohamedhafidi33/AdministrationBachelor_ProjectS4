@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import beans.Gender;
 import beans.Professeur;
 import dao.ExcelGenerator;
+import dao.IFiliereDAO;
+import dao.IFiliereImplDAO;
 import dao.IMatiereDAO;
 import dao.IMatiereImplDAO;
 import dao.IProfesseurDAO;
@@ -38,6 +40,7 @@ public class ServletGestionProf extends HttpServlet {
 	ISemestreDAO isem = new ISemestreImplDAO();
 	ExcelGenerator excelG=new ExcelGenerator();
 	IUserDAO iuser=new UserTest();
+	IFiliereDAO ifil=new IFiliereImplDAO();
 	SendEmail snd=new SendEmail();
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -132,6 +135,7 @@ public class ServletGestionProf extends HttpServlet {
 
 		if (request.getServletPath().equals("/afficherProfs")) {
 			request.setAttribute("profs", iprof.listProfs());
+			request.setAttribute("listFiliere", ifil.listeFiliere());
 			request.setAttribute("listSemestre", isem.listeSemestre());
 			request.getRequestDispatcher("afficherProfs.jsp").forward(request, response);
 		}
@@ -165,6 +169,8 @@ public class ServletGestionProf extends HttpServlet {
 		}
 		if (request.getServletPath().equals("/sendSemestre")) {
 			request.setAttribute("profs",iprof.listProfsBySemestre(isem.getIdSemestre(request.getParameter("semestre"))));
+			request.setAttribute("listFiliere", ifil.listeFiliere());
+			request.setAttribute("listSemestre", isem.listeSemestre());
 			request.getRequestDispatcher("/afficherProfs.jsp").forward(request, response);
 		}
 	}

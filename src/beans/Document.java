@@ -17,4 +17,30 @@ public class Document {
 	@ManyToOne
 	@JoinColumn(name="Etudiant_id",referencedColumnName="id")
 	private Etudiant etudiant;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Doctype getType() {
+		return type;
+	}
+
+	public void setType(Doctype type) {
+		this.type = type;
+	}
+
+	public Etudiant getEtudiant() {
+		return etudiant;
+	}
+
+	public void setEtudiant(Etudiant etudiant) {
+		this.etudiant = etudiant;
+	}
+	
+	
 }

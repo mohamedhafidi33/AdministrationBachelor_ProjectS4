@@ -50,7 +50,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Users <small>Some examples to get you started</small></h3>
+                <h3><small>Ajout d'absences</small></h3>
               </div>
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -93,7 +93,7 @@
                <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Button Example <small>Users</small></h2>
+                    <h2>Listes des étudiants<small>Users</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -113,9 +113,7 @@
                       <div class="row">
                           <div class="col-sm-12">
                             <div class="card-box table-responsive">
-                    <p class="text-muted font-13 m-b-30">
-                      The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
-                    </p>
+                    
                     <form class="" action="addAbsence" method="post" novalidate>
                     <table id="datatable-buttons" class="table table-striped table-bordered" style="width:100%">
                       
