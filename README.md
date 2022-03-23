@@ -9,7 +9,7 @@ application intended for the administrative management of the Bachelor.
   The Bachelor training in Meknes is arousing more and more enthusiasm from new graduates at national level. The growing demand for this training is giving the administration more and more work. The computerization of administrative management is a good solution to facilitate, among other things, the tasks of listing the absences of students enrolled in the different courses and semesters, and for monitoring teachers' salaries.
   This application developed aims not only to provide those responsible for the administration of the Bachelor training with adequate tools to carry out these daily tasks, but also to allow other tools to students and teachers to faster and more effective communication with the administration.
 
-## 3.CONCEPTION:
+## 3.DESIGN:
 ### 3.1.USE CASE DIAGRAM:
 ![Use Case Model](https://user-images.githubusercontent.com/72892818/124247127-7c3d7580-db19-11eb-9de6-2040f7f13428.png)
 
