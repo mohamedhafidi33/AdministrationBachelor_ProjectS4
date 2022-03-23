@@ -34,7 +34,9 @@ application intended for the administrative management of the Bachelor.
 <img width="936" alt="reservation" src="https://user-images.githubusercontent.com/72892818/124292173-31d5ec00-db4d-11eb-9df9-c498cbcfd241.PNG">
 <img width="925" alt="listeprof" src="https://user-images.githubusercontent.com/72892818/124402852-c6497580-dd2a-11eb-83bc-c356918b28b1.PNG">
 
+## 6.REPORT:
+[Rapport_AdministrationBachelor_S4.pdf](https://github.com/mohamedhafidi33/AdministrationBachelor_ProjectS4/files/8337016/Rapport_AdministrationBachelor_S4.pdf)
 
-## 6.CONTRIBUTORS:
+## 7.CONTRIBUTORS:
  ##### -HAFIDI Mohamed (https://github.com/mohamedhafidi33)
  ##### -MAHJOUBI Asmae (https://github.com/asmae1m)
